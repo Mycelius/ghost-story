@@ -14,12 +14,15 @@ var camera_rotation
 var is_rotating
 var rotation_dir
 var rotation_time
+var rotate_again
 
 func _ready():
 	rotation_offset = 0
 	pivot = $pivot
 	camera = $pivot/camera
 	camera_rotation = 0
+	is_rotating = false
+	rotate_again = false
 	
 	# Place the camera
 	camera.transform.origin.z -= camera_distance
@@ -42,17 +45,22 @@ func process_input():
 		rotation_offset += 1
 		
 func process_move(delta):
-	if rotation_offset != 0 && !is_rotating:
+	
+	if (rotation_offset != 0 && !is_rotating):
 		rotation_dir = rotation_offset
 		is_rotating = true
 		rotation_time = 0
+		camera_rotation = 0
+		rotate_again = false
+	elif is_rotating && rotation_time >= (ROTATION_DURATION * 0.8):
+		rotate_again = true
 	
 	if is_rotating:
 		
 		if rotation_time > ROTATION_DURATION:
 			rotation_time = ROTATION_DURATION
 		var laststep = camera_rotation
-		camera_rotation = (Easing.Quad.easeOut(rotation_time, 0.0, ROTATION_STEP, ROTATION_DURATION))
+		camera_rotation = (Easing.Cubic.easeOut(rotation_time, 0.0, ROTATION_STEP, ROTATION_DURATION))
 		
 		if rotation_time == ROTATION_DURATION:
 			is_rotating = false

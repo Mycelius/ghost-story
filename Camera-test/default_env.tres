@@ -19,13 +19,14 @@ sun_angle_max = 100.0
 sun_curve = 0.05
 sun_energy = 16.0
 texture_size = 2
+_sections_unfolded = [ "Sky", "Sun" ]
 
 [resource]
 
-background_mode = 2
+background_mode = 1
 background_sky = SubResource( 1 )
 background_sky_custom_fov = 0.0
-background_color = Color( 0, 0, 0, 1 )
+background_color = Color( 0.0585882, 0.0585938, 0.0585938, 1 )
 background_energy = 1.0
 background_canvas_max_layer = 0
 ambient_light_color = Color( 0, 0, 0, 1 )
@@ -98,4 +99,5 @@ adjustment_enabled = false
 adjustment_brightness = 1.0
 adjustment_contrast = 1.0
 adjustment_saturation = 1.0
+_sections_unfolded = [ "Background" ]
 
