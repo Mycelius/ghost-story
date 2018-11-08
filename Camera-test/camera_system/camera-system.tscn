@@ -1,19 +1,20 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://camera-system.gd" type="Script" id=1]
+[ext_resource path="res://camera_system/camera-system.gd" type="Script" id=1]
 
 [node name="camera-system" type="Spatial"]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.400269, 0 )
 script = ExtResource( 1 )
+camera_distance = null
+camera_height = null
 
 [node name="pivot" type="Spatial" parent="." index="0"]
 
 _sections_unfolded = [ "Transform" ]
 
-[node name="camera target" type="Camera" parent="pivot" index="0"]
+[node name="camera" type="Camera" parent="pivot" index="0"]
 
-transform = Transform( 1, 0, 0, 0, 0.891007, 0.453991, 0, -0.453991, 0.891007, 0, 5, 10 )
 keep_aspect = 1
 cull_mask = 1048575
 environment = null

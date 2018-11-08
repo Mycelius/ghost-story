@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://camera-system.tscn" type="PackedScene" id=1]
+[ext_resource path="res://camera_system/camera-system.tscn" type="PackedScene" id=1]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -83,6 +83,8 @@ points = PoolVector3Array( -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, 1,
 
 transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0.400269, 0 )
 _sections_unfolded = [ "Transform" ]
+camera_distance = 10.0
+camera_height = 4.5
 
 [node name="MeshInstance" type="MeshInstance" parent="." index="1"]
 
