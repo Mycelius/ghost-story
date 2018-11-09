@@ -22,7 +22,7 @@ func _ready():
 	camera = $pivot/camera
 	camera_rotation = 0
 	is_rotating = false
-	rotate_again = false
+	rotate_again = 0
 	
 	# Place the camera
 	camera.transform.origin.z -= camera_distance
@@ -46,14 +46,14 @@ func process_input():
 		
 func process_move(delta):
 	
-	if (rotation_offset != 0 && !is_rotating):
-		rotation_dir = rotation_offset
+	if (rotation_offset != 0 || rotate_again != 0) && !is_rotating:
+		rotation_dir = rotation_offset if rotation_offset != 0 else rotate_again
 		is_rotating = true
 		rotation_time = 0
 		camera_rotation = 0
-		rotate_again = false
-	elif is_rotating && rotation_time >= (ROTATION_DURATION * 0.8):
-		rotate_again = true
+		rotate_again = 0
+	elif rotation_offset != 0 && is_rotating && rotation_time >= (ROTATION_DURATION * 0.5):
+		rotate_again = rotation_offset
 	
 	if is_rotating:
 		

@@ -65,7 +65,7 @@ distance_fade_enable = false
 
 points = PoolVector3Array( -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, -1, -1, -1, -1, 1, -1, 1, -1, -1 )
 
-[sub_resource type="SpatialMaterial" id=6]
+[sub_resource type="SpatialMaterial" id=4]
 
 render_priority = 0
 flags_transparent = false
@@ -117,20 +117,20 @@ proximity_fade_enable = false
 distance_fade_enable = false
 _sections_unfolded = [ "Albedo" ]
 
-[sub_resource type="CubeMesh" id=4]
+[sub_resource type="CubeMesh" id=5]
 
-material = SubResource( 6 )
+material = SubResource( 4 )
 custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 size = Vector3( 2, 2, 2 )
 subdivide_width = 0
 subdivide_height = 0
 subdivide_depth = 0
 
-[sub_resource type="ConvexPolygonShape" id=5]
+[sub_resource type="ConvexPolygonShape" id=6]
 
 points = PoolVector3Array( -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, -1, -1, -1, -1, 1, -1, 1, -1, -1 )
 
-[node name="Main-scene" type="Spatial" index="0"]
+[node name="Main-scene" type="Spatial"]
 
 [node name="camera-system" parent="." index="0" instance=ExtResource( 1 )]
 
@@ -141,7 +141,6 @@ camera_height = 4.5
 
 [node name="MeshInstance" type="MeshInstance" parent="." index="1"]
 
-editor/display_folded = true
 transform = Transform( 3, 0, 0, 0, 0.2, 0, 0, 0, 3, 0, 0, 0 )
 layers = 1
 material_override = null
@@ -176,7 +175,7 @@ disabled = false
 [node name="MeshInstance2" type="MeshInstance" parent="." index="2"]
 
 editor/display_folded = true
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0.816895, 0 )
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0.701874, 0 )
 layers = 1
 material_override = null
 cast_shadow = 1
@@ -186,10 +185,10 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 4 )
+mesh = SubResource( 5 )
 skeleton = NodePath("..")
 material/0 = null
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Geometry", "Transform" ]
 
 [node name="StaticBody" type="StaticBody" parent="MeshInstance2" index="0"]
 
@@ -204,13 +203,13 @@ constant_angular_velocity = Vector3( 0, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="MeshInstance2/StaticBody" index="0"]
 
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 disabled = false
 
 [node name="MeshInstance3" type="MeshInstance" parent="." index="3"]
 
 editor/display_folded = true
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 1, 2.02661, 0.816895, 0 )
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 1, 2.02661, 0.705731, 0 )
 layers = 1
 material_override = null
 cast_shadow = 1
@@ -220,7 +219,7 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 4 )
+mesh = SubResource( 5 )
 skeleton = NodePath("..")
 material/0 = null
 _sections_unfolded = [ "Transform" ]
@@ -238,35 +237,7 @@ constant_angular_velocity = Vector3( 0, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="MeshInstance3/StaticBody" index="0"]
 
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 disabled = false
-
-[node name="DirectionalLight" type="DirectionalLight" parent="." index="4"]
-
-transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 4.73386, 0 )
-layers = 1
-light_color = Color( 1, 1, 1, 1 )
-light_energy = 1.0
-light_indirect_energy = 1.0
-light_negative = false
-light_specular = 0.5
-light_bake_mode = 1
-light_cull_mask = -1
-shadow_enabled = false
-shadow_color = Color( 0, 0, 0, 1 )
-shadow_bias = 0.1
-shadow_contact = 0.0
-shadow_reverse_cull_face = false
-editor_only = false
-directional_shadow_mode = 2
-directional_shadow_split_1 = 0.1
-directional_shadow_split_2 = 0.2
-directional_shadow_split_3 = 0.5
-directional_shadow_blend_splits = false
-directional_shadow_normal_bias = 0.8
-directional_shadow_bias_split_scale = 0.25
-directional_shadow_depth_range = 0
-directional_shadow_max_distance = 200.0
-_sections_unfolded = [ "Transform" ]
 
 
