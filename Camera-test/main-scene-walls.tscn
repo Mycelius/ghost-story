@@ -77,7 +77,6 @@ camera_height = 4.5
 
 [node name="MeshInstance" type="MeshInstance" parent="." index="1"]
 
-editor/display_folded = true
 transform = Transform( 3, 0, 0, 0, 0.2, 0, 0, 0, 3, 0, 0.2, 0 )
 layers = 1
 material_override = null
@@ -109,12 +108,24 @@ constant_angular_velocity = Vector3( 0, 0, 0 )
 shape = SubResource( 3 )
 disabled = false
 
-[node name="wall1" parent="." index="2" instance=ExtResource( 2 )]
+[node name="Wall01" parent="." index="2" instance=ExtResource( 2 )]
 
-transform = Transform( -3, 0, -1.74846e-08, 0, 3, 0, 2.62268e-07, 0, -0.2, 0, 3, 3.22049 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3 )
+_sections_unfolded = [ "Transform" ]
 
-[node name="wall2" parent="." index="3" instance=ExtResource( 2 )]
+[node name="Wall03" parent="." index="3" instance=ExtResource( 2 )]
 
-transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 0.2, 0, 3, -3.19465 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3, 0, -0.015009 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Wall04" parent="." index="4" instance=ExtResource( 2 )]
+
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 0, -0.015009 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Wall02" parent="." index="5" instance=ExtResource( 2 )]
+
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 3 )
+_sections_unfolded = [ "Transform" ]
 
 

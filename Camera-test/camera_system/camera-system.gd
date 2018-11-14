@@ -68,3 +68,5 @@ func process_move(delta):
 			rotation_time += delta
 		
 		pivot.rotate_object_local(Vector3(0,1,0), deg2rad((camera_rotation - laststep) * rotation_dir))
+	else:
+		pivot.transform = pivot.transform.orthonormalized()
