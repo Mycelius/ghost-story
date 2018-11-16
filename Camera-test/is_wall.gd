@@ -7,11 +7,10 @@ func _ready():
 
 func _process(delta):
 	if pivot != null:
-		transform = transform.orthonormalized()
+		transform = global_transform.orthonormalized()
 		pivot.transform = pivot.transform.orthonormalized()
-		var direction = transform.origin - pivot.transform.origin
-		print(direction.dot(pivot.transform.basis.z))
-		if direction.dot(pivot.transform.basis.z) > 0:
+		var direction = (pivot.global_transform.origin - transform.origin).normalized()
+		if direction.dot(pivot.global_transform.basis.z) > 0:
 			hide()
 		else:
 			show()
