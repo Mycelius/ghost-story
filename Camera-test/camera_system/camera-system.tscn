@@ -13,7 +13,12 @@ camera_height = null
 
 _sections_unfolded = [ "Transform" ]
 
-[node name="camera" type="Camera" parent="pivot" index="0"]
+[node name="player-direction" type="Spatial" parent="pivot" index="0"]
+
+transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="camera" type="Camera" parent="pivot" index="1"]
 
 keep_aspect = 1
 cull_mask = 1048575

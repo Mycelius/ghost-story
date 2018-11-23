@@ -9,8 +9,10 @@ var direction = Vector3()
 var velocity = Vector3()
 var is_moving = false
 
+var player_axes
+
 func _ready():
-	pass
+	player_axes = get_parent().get_node("camera-system/pivot/player-direction")
 
 func _physics_process(delta):
 	keyboard_process()
@@ -18,18 +20,19 @@ func _physics_process(delta):
 	
 func keyboard_process():
 	direction = Vector3(0,0,0)
+	var abs_direction = player_axes.get_global_transform().basis
 	is_moving = false
 	if Input.is_action_pressed("ui_up"):
-		direction.z -= 1
+		direction += abs_direction.z
 		is_moving = true
 	if Input.is_action_pressed("ui_down"):
-		direction.z += 1
+		direction -= abs_direction.z
 		is_moving = true
 	if Input.is_action_pressed("ui_left"):
-		direction.x -= 1
+		direction += abs_direction.x
 		is_moving = true
 	if Input.is_action_pressed("ui_right"):
-		direction.x += 1
+		direction -= abs_direction.x
 		is_moving = true
 		
 		
