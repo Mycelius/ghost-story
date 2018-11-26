@@ -125,7 +125,7 @@ distance_fade_enable = false
 radius = 0.543134
 height = 1.39284
 
-[node name="Ghost" type="KinematicBody" index="0"]
+[node name="ghost" type="KinematicBody" index="0"]
 
 input_ray_pickable = true
 input_capture_on_drag = false

@@ -7,6 +7,8 @@ const ROTATION_STEP = 90.0
 export (float) var camera_distance
 export (float) var camera_height
 
+var player_position
+
 var rotation_offset
 var pivot
 var camera
@@ -32,6 +34,7 @@ func _ready():
 	var lookDir = pivot.transform.origin - camera.transform.origin
 	var cameraTransform = camera.transform.looking_at(lookDir, Vector3(0,1,0))
 	camera.set_transform(cameraTransform)
+	
 
 func _process(delta):
 	process_input()
@@ -45,7 +48,12 @@ func process_input():
 		rotation_offset += 1
 		
 func process_move(delta):
+	## Follow player
+	#get player position
+	player_position = get_parent().get_node("ghost").global_transform.origin
+	pivot.global_transform.origin = player_position
 	
+	## Rotate camera
 	if (rotation_offset != 0 || rotate_again != 0) && !is_rotating:
 		rotation_dir = rotation_offset if rotation_offset != 0 else rotate_again
 		is_rotating = true

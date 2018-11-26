@@ -6,7 +6,7 @@
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.400269, 0 )
 script = ExtResource( 1 )
-camera_distance = null
+camera_distance = 0.0
 camera_height = null
 
 [node name="pivot" type="Spatial" parent="." index="0"]
@@ -30,7 +30,7 @@ projection = 1
 current = false
 fov = 70.0
 size = 12.0
-near = 0.05
+near = 0.0
 far = 100.0
 _sections_unfolded = [ "Transform" ]
 
