@@ -55,7 +55,8 @@ func set_index(nbr, new_index):
 			set_speed(new_speed)
 			label.set_visible_characters(0)
 		else:
-			timer.stop()
+			if timer.is_processing():
+				timer.stop()
 			label.set_visible_characters(label.get_total_character_count())
 		label.bbcode_text = dialog[nbr][0][index]
 	elif dialog.size() >= nbr + 1:
