@@ -19,8 +19,12 @@ func start_dialog(part):
 		var pos = part_array[0]
 		var texts = part_array[1]
 		start_dialog_box(texts, pos)
+		
+func remove_dialog():
+	remove_child(dialog_box)
 
 func start_dialog_box(texts, pos):
 	dialog_box = dialog_box.instance()
-	dialog_box.set_dialog(texts[0])
+	dialog_box.connect("text_finished", self, "remove_dialog")
+	dialog_box.set_dialog(texts)
 	add_child(dialog_box)
