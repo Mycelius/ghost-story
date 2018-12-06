@@ -1,6 +1,7 @@
 tool
 extends Control
 
+const BLOCK_MARGIN = 10
 
 var viewport_w
 var viewport_h
@@ -52,20 +53,21 @@ func set_box_size(pos):
 	height = round(viewport_h / 3)
 	
 	if pos in ["T", "M", "B"]:
-		width = viewport_w
+		width = viewport_w - (2 * BLOCK_MARGIN)
+		pos_left = BLOCK_MARGIN
 	else:
 		width = round(viewport_w / 3)
 	
 	if pos in ["TL", "ML", "BL"]:
-		pos_left = 0
+		pos_left = BLOCK_MARGIN
 	elif pos in ["TM", "MM", "BM"]:
 		pos_left = width
 	elif pos in ["TR", "MR", "BR"]:
-		pos_left = 2*width
+		pos_left = (2 * width) - BLOCK_MARGIN
 		
 	if pos in ["T", "TL", "TM", "TR"]:
-		pos_top = 0
+		pos_top = BLOCK_MARGIN
 	elif pos in ["M", "ML", "MM", "MR"]:
 		pos_top = height
 	elif pos in ["B", "BL", "BM", "BR"]:
-		pos_top = 2*height
+		pos_top = (2 * height) - BLOCK_MARGIN

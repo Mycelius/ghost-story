@@ -1,20 +1,8 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://tests_scenes/dialogs_main.gd" type="Script" id=1]
-[ext_resource path="res://camera_system/camera-system.tscn" type="PackedScene" id=2]
-[ext_resource path="res://ghost.tscn" type="PackedScene" id=3]
-[ext_resource path="res://addons/dialogs/dialog_box.gd" type="Script" id=4]
-[ext_resource path="res://addons/dialogs/icon.png" type="Texture" id=5]
+[ext_resource path="res://portal_trigger.gd" type="Script" id=1]
 
-[sub_resource type="CubeMesh" id=1]
-
-custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
-size = Vector3( 2, 2, 2 )
-subdivide_width = 0
-subdivide_height = 0
-subdivide_depth = 0
-
-[sub_resource type="SpatialMaterial" id=2]
+[sub_resource type="SpatialMaterial" id=1]
 
 render_priority = 0
 flags_transparent = false
@@ -37,62 +25,7 @@ params_point_size = 1.0
 params_billboard_mode = 0
 params_grow = false
 params_use_alpha_scissor = false
-albedo_color = Color( 0.417969, 0.417969, 0.417969, 1 )
-metallic = 0.0
-metallic_specular = 0.5
-metallic_texture_channel = 0
-roughness = 0.0
-roughness_texture_channel = 0
-emission_enabled = false
-normal_enabled = false
-rim_enabled = false
-clearcoat_enabled = false
-anisotropy_enabled = false
-ao_enabled = false
-depth_enabled = false
-subsurf_scatter_enabled = false
-transmission_enabled = false
-refraction_enabled = false
-detail_enabled = false
-uv1_scale = Vector3( 1, 1, 1 )
-uv1_offset = Vector3( 0, 0, 0 )
-uv1_triplanar = false
-uv1_triplanar_sharpness = 1.0
-uv2_scale = Vector3( 1, 1, 1 )
-uv2_offset = Vector3( 0, 0, 0 )
-uv2_triplanar = false
-uv2_triplanar_sharpness = 1.0
-proximity_fade_enable = false
-distance_fade_enable = false
-
-[sub_resource type="ConvexPolygonShape" id=3]
-
-points = PoolVector3Array( -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, -1, -1, -1, -1, 1, -1, 1, -1, -1 )
-
-[sub_resource type="SpatialMaterial" id=4]
-
-render_priority = 0
-flags_transparent = false
-flags_unshaded = false
-flags_vertex_lighting = false
-flags_no_depth_test = false
-flags_use_point_size = false
-flags_world_triplanar = false
-flags_fixed_size = false
-flags_albedo_tex_force_srgb = false
-vertex_color_use_as_albedo = false
-vertex_color_is_srgb = false
-params_diffuse_mode = 0
-params_specular_mode = 0
-params_blend_mode = 0
-params_cull_mode = 0
-params_depth_draw_mode = 0
-params_line_width = 1.0
-params_point_size = 1.0
-params_billboard_mode = 0
-params_grow = false
-params_use_alpha_scissor = false
-albedo_color = Color( 0.144836, 0.363923, 0.882812, 1 )
+albedo_color = Color( 0.429688, 0.429688, 0.429688, 1 )
 metallic = 0.0
 metallic_specular = 0.5
 metallic_texture_channel = 0
@@ -121,33 +54,86 @@ proximity_fade_enable = false
 distance_fade_enable = false
 _sections_unfolded = [ "Albedo" ]
 
-[sub_resource type="CubeMesh" id=5]
+[sub_resource type="CubeMesh" id=2]
 
-material = SubResource( 4 )
+material = SubResource( 1 )
 custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 size = Vector3( 2, 2, 2 )
 subdivide_width = 0
 subdivide_height = 0
 subdivide_depth = 0
 
-[sub_resource type="ConvexPolygonShape" id=6]
+[sub_resource type="ConvexPolygonShape" id=3]
 
 points = PoolVector3Array( -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, -1, -1, -1, -1, 1, -1, 1, -1, -1 )
 
-[node name="Main-scene" type="Spatial"]
+[sub_resource type="SpatialMaterial" id=4]
 
-script = ExtResource( 1 )
+render_priority = 0
+flags_transparent = false
+flags_unshaded = false
+flags_vertex_lighting = false
+flags_no_depth_test = false
+flags_use_point_size = false
+flags_world_triplanar = false
+flags_fixed_size = false
+flags_albedo_tex_force_srgb = false
+vertex_color_use_as_albedo = false
+vertex_color_is_srgb = false
+params_diffuse_mode = 0
+params_specular_mode = 0
+params_blend_mode = 0
+params_cull_mode = 0
+params_depth_draw_mode = 0
+params_line_width = 1.0
+params_point_size = 1.0
+params_billboard_mode = 0
+params_grow = false
+params_use_alpha_scissor = false
+albedo_color = Color( 0, 0, 0, 1 )
+metallic = 0.0
+metallic_specular = 0.5
+metallic_texture_channel = 0
+roughness = 0.92
+roughness_texture_channel = 0
+emission_enabled = false
+normal_enabled = false
+rim_enabled = false
+clearcoat_enabled = false
+anisotropy_enabled = false
+ao_enabled = false
+depth_enabled = false
+subsurf_scatter_enabled = false
+transmission_enabled = false
+refraction_enabled = false
+detail_enabled = false
+uv1_scale = Vector3( 1, 1, 1 )
+uv1_offset = Vector3( 0, 0, 0 )
+uv1_triplanar = false
+uv1_triplanar_sharpness = 1.0
+uv2_scale = Vector3( 1, 1, 1 )
+uv2_offset = Vector3( 0, 0, 0 )
+uv2_triplanar = false
+uv2_triplanar_sharpness = 1.0
+proximity_fade_enable = false
+distance_fade_enable = false
+_sections_unfolded = [ "Albedo", "Roughness" ]
 
-[node name="camera-system" parent="." index="0" instance=ExtResource( 2 )]
+[sub_resource type="QuadMesh" id=5]
 
-transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0.400269, 0 )
-_sections_unfolded = [ "Transform" ]
-camera_distance = 10.0
-camera_height = 4.5
+material = SubResource( 4 )
+custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
+size = Vector2( 1, 1 )
 
-[node name="MeshInstance" type="MeshInstance" parent="." index="1"]
+[sub_resource type="BoxShape" id=6]
 
-transform = Transform( 3, 0, 0, 0, 0.2, 0, 0, 0, 3, 0, 0, 0 )
+extents = Vector3( 1.17949, 1.68055, 0.069948 )
+
+[node name="Portal" type="Spatial"]
+
+[node name="MeshInstance" type="MeshInstance" parent="." index="0"]
+
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 0.2, 0, 3, 0 )
 layers = 1
 material_override = null
 cast_shadow = 1
@@ -157,10 +143,10 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 1 )
+mesh = SubResource( 2 )
 skeleton = NodePath("..")
-material/0 = SubResource( 2 )
-_sections_unfolded = [ "Transform", "material" ]
+material/0 = null
+_sections_unfolded = [ "Transform" ]
 
 [node name="StaticBody" type="StaticBody" parent="MeshInstance" index="0"]
 
@@ -178,10 +164,9 @@ constant_angular_velocity = Vector3( 0, 0, 0 )
 shape = SubResource( 3 )
 disabled = false
 
-[node name="MeshInstance2" type="MeshInstance" parent="." index="2"]
+[node name="MeshInstance2" type="MeshInstance" parent="." index="1"]
 
-editor/display_folded = true
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0.701874, 0 )
+transform = Transform( 2.36167, 0, 0, 0, 3.31065, 0, 0, 0, 1, -0.0242221, 1.65311, 0.222487 )
 layers = 1
 material_override = null
 cast_shadow = 1
@@ -194,81 +179,37 @@ lod_max_hysteresis = 0.0
 mesh = SubResource( 5 )
 skeleton = NodePath("..")
 material/0 = null
-_sections_unfolded = [ "Geometry", "Transform" ]
 
-[node name="StaticBody" type="StaticBody" parent="MeshInstance2" index="0"]
+[node name="Trigger" type="Area" parent="." index="2"]
 
-input_ray_pickable = true
+input_ray_pickable = false
 input_capture_on_drag = false
+space_override = 0
+gravity_point = false
+gravity_distance_scale = 0.0
+gravity_vec = Vector3( 0, -1, 0 )
+gravity = 9.8
+linear_damp = 0.1
+angular_damp = 1.0
+priority = 0.0
+monitoring = true
+monitorable = true
 collision_layer = 1
 collision_mask = 1
-friction = 1.0
-bounce = 0.0
-constant_linear_velocity = Vector3( 0, 0, 0 )
-constant_angular_velocity = Vector3( 0, 0, 0 )
+audio_bus_override = false
+audio_bus_name = "Master"
+reverb_bus_enable = false
+reverb_bus_name = "Master"
+reverb_bus_amount = 0.0
+reverb_bus_uniformity = 0.0
+script = ExtResource( 1 )
+gotoScene = null
+tag = null
 
-[node name="CollisionShape" type="CollisionShape" parent="MeshInstance2/StaticBody" index="0"]
+[node name="CollisionShape" type="CollisionShape" parent="Trigger" index="0"]
 
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.66412, 0.273036 )
 shape = SubResource( 6 )
 disabled = false
-
-[node name="MeshInstance3" type="MeshInstance" parent="." index="3"]
-
-editor/display_folded = true
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 1, 2.02661, 0.705731, 0 )
-layers = 1
-material_override = null
-cast_shadow = 1
-extra_cull_margin = 0.0
-use_in_baked_light = false
-lod_min_distance = 0.0
-lod_min_hysteresis = 0.0
-lod_max_distance = 0.0
-lod_max_hysteresis = 0.0
-mesh = SubResource( 5 )
-skeleton = NodePath("..")
-material/0 = null
-_sections_unfolded = [ "Transform" ]
-
-[node name="StaticBody" type="StaticBody" parent="MeshInstance3" index="0"]
-
-input_ray_pickable = true
-input_capture_on_drag = false
-collision_layer = 1
-collision_mask = 1
-friction = 1.0
-bounce = 0.0
-constant_linear_velocity = Vector3( 0, 0, 0 )
-constant_angular_velocity = Vector3( 0, 0, 0 )
-
-[node name="CollisionShape" type="CollisionShape" parent="MeshInstance3/StaticBody" index="0"]
-
-shape = SubResource( 6 )
-disabled = false
-
-[node name="ghost" parent="." index="4" instance=ExtResource( 3 )]
-
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55219, 0, 0 )
-
-[node name="Dialog" type="Control" parent="." index="5"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 0.0
-margin_right = -781.0
-margin_bottom = 211.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-script = ExtResource( 4 )
-_sections_unfolded = [ "Rect" ]
-__meta__ = {
-"_editor_icon": ExtResource( 5 )
-}
-json_file = "res://tests_scenes/dialogs/dialogue1.json"
 
 
