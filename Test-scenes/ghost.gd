@@ -63,3 +63,6 @@ func move_process(delta):
 		
 		char_rot.y = angle
 		set_rotation(char_rot)
+		
+func is_player():
+	return true
