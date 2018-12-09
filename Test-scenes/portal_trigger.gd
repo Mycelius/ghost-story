@@ -1,6 +1,6 @@
 extends Area
 
-export(PackedScene) var gotoScene
+export(String, FILE, "*.tscn") var scene
 export(String) var tag
 
 func _ready():
@@ -9,4 +9,4 @@ func _ready():
 func _on_Portal_body_entered(body):
 	var wall_visible = get_parent().visible
 	if wall_visible && body.has_method("is_player"):
-		print(tag)
+		get_node("/root/global").change_level(scene, tag)

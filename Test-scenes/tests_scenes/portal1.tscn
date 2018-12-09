@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://camera_system/camera-system.tscn" type="PackedScene" id=1]
 [ext_resource path="res://portal_wall.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://portal.tscn" type="PackedScene" id=4]
 [ext_resource path="res://wall.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ghost.tscn" type="PackedScene" id=6]
+[ext_resource path="res://position.tscn" type="PackedScene" id=7]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -115,6 +116,7 @@ disabled = false
 
 [node name="Portal" parent="." index="2" instance=ExtResource( 2 )]
 
+editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.21968 )
 script = ExtResource( 3 )
 
@@ -122,6 +124,7 @@ script = ExtResource( 3 )
 
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.314687, 1.15586, 0.549467 )
+scene = "res://tests_scenes/portal2.tscn"
 tag = "A"
 
 [node name="Wall03" parent="." index="3" instance=ExtResource( 5 )]
@@ -142,5 +145,12 @@ _sections_unfolded = [ "Transform" ]
 [node name="ghost" parent="." index="6" instance=ExtResource( 6 )]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5938, 0 )
+
+[node name="Positions" type="Node" parent="." index="7"]
+
+[node name="Position" parent="Positions" index="0" instance=ExtResource( 7 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.100217, 0, -2.1116 )
+tag = "A"
 
 

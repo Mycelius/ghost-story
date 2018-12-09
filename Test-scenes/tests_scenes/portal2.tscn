@@ -1,8 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://camera_system/camera-system.tscn" type="PackedScene" id=1]
 [ext_resource path="res://wall.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ghost.tscn" type="PackedScene" id=3]
+[ext_resource path="res://portal_wall.tscn" type="PackedScene" id=4]
+[ext_resource path="res://is_wall.gd" type="Script" id=5]
+[ext_resource path="res://portal.tscn" type="PackedScene" id=6]
+[ext_resource path="res://position.tscn" type="PackedScene" id=7]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -156,6 +160,7 @@ transform = Transform( 8.58677, 0, 0, 0, 3, 0, 0, 0, 0.2, 0, 3, 0 )
 
 [node name="Wall05" parent="." index="4" instance=ExtResource( 2 )]
 
+editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8651, 0, -9.19404 )
 _sections_unfolded = [ "Transform" ]
 
@@ -170,20 +175,25 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Wall08" parent="." index="6" instance=ExtResource( 2 )]
 
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.43911, 0, -6.41549 )
+editor/display_folded = true
+transform = Transform( 1, 0, 1.11759e-07, 0, 1, 0, -1.11759e-07, 0, 1, 5.43911, -0.0168471, -6.41549 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="MeshInstance" parent="Wall08" index="0"]
+
+transform = Transform( -1.31134e-07, 0, 0.2, 0, 3, 0, -3, 0, -8.74228e-09, 0, 3, 0 )
 
 [node name="Wall04" parent="." index="7" instance=ExtResource( 2 )]
 
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11.3359, 0, -0.015009 )
+editor/display_folded = true
+transform = Transform( -1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 11.3359, 0, -0.015009 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Wall06" parent="." index="8" instance=ExtResource( 2 )]
+[node name="MeshInstance" parent="Wall04" index="0"]
 
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 28.245, 0, -6.01678 )
-_sections_unfolded = [ "Transform" ]
+transform = Transform( -1.31134e-07, 0, 0.2, 0, 3, 0, -3, 0, -8.74228e-09, 0, 3, 0 )
 
-[node name="Wall02" parent="." index="9" instance=ExtResource( 2 )]
+[node name="Wall02" parent="." index="8" instance=ExtResource( 2 )]
 
 editor/display_folded = true
 transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, 3.18018 )
@@ -193,7 +203,7 @@ _sections_unfolded = [ "Transform" ]
 
 transform = Transform( 11.6104, 0, 0, 0, 3, 0, 0, 0, 0.2, 0, 3, 0 )
 
-[node name="Wall07" parent="." index="10" instance=ExtResource( 2 )]
+[node name="Wall07" parent="." index="9" instance=ExtResource( 2 )]
 
 editor/display_folded = true
 transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 19.9034, 0, -2.82388 )
@@ -203,14 +213,40 @@ _sections_unfolded = [ "Transform" ]
 
 transform = Transform( 8.45922, 0, 0, 0, 3, 0, 0, 0, 0.2, 0, 3, 0 )
 
-[node name="ghost" parent="." index="11" instance=ExtResource( 3 )]
+[node name="ghost" parent="." index="10" instance=ExtResource( 3 )]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5938, 0 )
 speed = 9
 acceleration = 8
 
+[node name="Portal_wall" parent="." index="11" instance=ExtResource( 4 )]
+
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 28.1041, 0.00248861, -6.02611 )
+script = ExtResource( 5 )
+
+[node name="Portal" parent="Portal_wall" index="2" instance=ExtResource( 6 )]
+
+editor/display_folded = true
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.191661, -0.00248861, 0.370829 )
+scene = "res://tests_scenes/portal1.tscn"
+tag = "A"
+
+[node name="CollisionShape" parent="Portal_wall/Portal" index="0"]
+
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0575314, 1.92588, 0.0628324 )
+
+[node name="Positions" type="Node" parent="." index="12"]
+
+[node name="Position" parent="Positions" index="0" instance=ExtResource( 7 )]
+
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 26.3571, 0.441746, -6.16698 )
+tag = "A"
+
 
 [editable path="Wall01"]
 [editable path="Wall05"]
+[editable path="Wall08"]
+[editable path="Wall04"]
 [editable path="Wall02"]
 [editable path="Wall07"]
+[editable path="Portal_wall/Portal"]
