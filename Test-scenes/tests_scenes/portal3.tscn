@@ -71,7 +71,7 @@ distance_fade_enable = false
 
 points = PoolVector3Array( -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, -1, -1, -1, -1, 1, -1, 1, -1, -1 )
 
-[node name="Main-scene" type="Spatial" index="0"]
+[node name="Main-scene" type="Spatial"]
 
 [node name="camera-system" parent="." index="0" instance=ExtResource( 1 )]
 
@@ -124,24 +124,17 @@ script = ExtResource( 3 )
 
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.314687, 1.15586, 0.549467 )
-scene = "res://tests_scenes/portal2.tscn"
-tag = "A"
-
-[node name="Portal2" parent="." index="3" instance=ExtResource( 2 )]
-
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.20912, 0, -0.026057 )
-script = ExtResource( 3 )
-
-[node name="Portal2" parent="Portal2" index="2" instance=ExtResource( 4 )]
-
-editor/display_folded = true
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.314687, 1.15586, 0.549467 )
-scene = "res://tests_scenes/portal3.tscn"
+scene = "res://tests_scenes/portal1.tscn"
 tag = "B"
 
-[node name="Wall03" parent="." index="4" instance=ExtResource( 5 )]
+[node name="Wall03" parent="." index="3" instance=ExtResource( 5 )]
 
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3, 0, -0.015009 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Wall04" parent="." index="4" instance=ExtResource( 5 )]
+
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 0, -0.015009 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Wall02" parent="." index="5" instance=ExtResource( 5 )]
@@ -158,11 +151,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5938, 0 )
 [node name="Position" parent="Positions" index="0" instance=ExtResource( 7 )]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.100217, 0, -2.1116 )
-tag = "A"
-
-[node name="Position2" parent="Positions" index="1" instance=ExtResource( 7 )]
-
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.47692, 0.911463, -0.186698 )
 tag = "B"
 
 

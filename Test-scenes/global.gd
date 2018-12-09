@@ -23,4 +23,8 @@ func _player_position(scene, tag):
 	if scene.has_node("ghost") && scene.has_node("Positions"):
 		var player = scene.get_node("ghost")
 		var positions = scene.get_node("Positions")
-		print(player, positions)
+		for pos in positions.get_children():
+			if pos.tag == tag:
+				player.transform.basis = pos.transform.basis
+				player.transform.origin = Vector3(pos.transform.origin.x, player.transform.origin.y, pos.transform.origin.z)
+				break
