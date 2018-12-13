@@ -113,7 +113,7 @@ func load_file():
 	var selector = FileDialog.new()
 	selector.add_filter("*.json")
 	selector.set_mode(selector.MODE_OPEN_FILE)
-	if OS.get_real_window_size().x >= 1400:
+	if OS.get_real_window_size().x >= 2000:
 		selector.rect_scale = Vector2(1.5,1.5)
 	add_child(selector)
 	selector.popup_centered(Vector2(800,600))
@@ -143,7 +143,7 @@ func save_file(contents):
 		selector.add_filter("*.json")
 		selector.set_title("Save file")
 		selector.set_mode(selector.MODE_SAVE_FILE)
-		if OS.get_real_window_size().x >= 1400:
+		if OS.get_real_window_size().x >= 2000:
 			selector.rect_scale = Vector2(1.5,1.5)
 		add_child(selector)
 		message.set_text("Json file created")
@@ -245,6 +245,9 @@ func remove_text():
 
 func save_texts():
 	save_dialog()
+	currentTexts[currentText] = textEditor.get_text()
+	currentSpeeds[currentText] = speedEditor.get_value()
+	# Re-create the array for Json output
 	var texts_array = []
 	var text_array = []
 	var last = false

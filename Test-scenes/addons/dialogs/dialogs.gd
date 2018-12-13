@@ -26,7 +26,7 @@ func _exit_tree():
 func _open_editor():
 	if (editor == null):
 		editor = editor_tscn.instance()
-		if OS.get_real_window_size().x >= 1400:
+		if OS.get_real_window_size().x >= 2000:
 			editor.rect_scale = Vector2(1.5,1.5)
 		add_child(editor)
 	editor.popup_centered()
