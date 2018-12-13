@@ -11,6 +11,9 @@ const HL = 2
 const HM = 3
 const HR = 4
 
+const VPOS = {1: "T", 2: "M", 3: "B"}
+const HPOS = {1: "", 2: "L", 3: "M", 4: "R"}
+
 const DEFAULT_POSITION = "B"
 
 # Main variables
@@ -45,6 +48,10 @@ onready var textRemoveButton = get_node("VBoxContainer/HBoxContainer/PanelContai
 onready var textEditor = get_node("VBoxContainer/PanelContainer3/HBoxContainer/VBoxContainer2/TextEdit")
 onready var speedEditor = get_node("VBoxContainer/PanelContainer3/HBoxContainer/VBoxContainer/SpeedEdit")
 
+# Texteditor buttons
+onready var saveTextButton = get_node("VBoxContainer/PanelContainer3/HBoxContainer/VBoxContainer3/saveButton")
+onready var nextButton = get_node("VBoxContainer/PanelContainer3/HBoxContainer/VBoxContainer3/nextButton")
+
 # Indo message
 onready var message = get_node("VBoxContainer/PanelContainer4/Message")
 
@@ -65,6 +72,8 @@ func _ready():
 	dialogRemoveButton.connect("pressed", self, "remove_dialog")
 	textAddButton.connect("pressed", self, "create_text")
 	textRemoveButton.connect("pressed", self, "remove_text")
+	saveTextButton.connect("pressed", self, "save_texts")
+	nextButton.connect("pressed", self, "next_text")
 
 func _init_lists():
 	dialog_list = get_node("VBoxContainer/PanelContainer2/VBoxContainer/HBoxContainer/DialogsList")
@@ -157,6 +166,7 @@ func populate_dialogs_list():
 		
 # A dialog is selected
 func selected_dialog(selected):
+	save_dialog()
 	currentDialog = null
 	if selected == null:
 		return
@@ -190,13 +200,14 @@ func get_positions(dialog_index):
 	var pos = contents[dialog_index][0]
 	var vpos = -1
 	var hpos = HNONE
-	if pos.length() == 1:
-		vpos = get(str("V", pos))
-	elif pos.length() == 2:
-		vpos = get(str("V", pos[0]))
-		hpos = get(str("H", pos[1]))
-	else:
-		message.set_text("Error getting the position")
+	if pos != null:
+		if pos.length() == 1:
+			vpos = get(str("V", pos))
+		elif pos.length() == 2:
+			vpos = get(str("V", pos[0]))
+			hpos = get(str("H", pos[1]))
+		else:
+			message.set_text("Error getting the position")
 	vAlign.select(vpos)
 	hAlign.select(hpos)
 
@@ -217,7 +228,9 @@ func create_text():
 	currentTexts.append("New text")
 	currentSpeeds.append(1)
 	populate_texts_list()
-	selected_text(currentTexts.size())
+	var index = currentTexts.size() - 1
+	texts_list.select(index)
+	selected_text(index)
 	
 func remove_text():
 	if currentText != null:
@@ -228,7 +241,40 @@ func remove_text():
 		textEditor.set_text("")
 	else:
 		message.set_text("No text selected")
+		
 
+func save_texts():
+	save_dialog()
+	var texts_array = []
+	var text_array = []
+	var last = false
+	var carray
+	for i in range(currentTexts.size()):
+		if i == currentTexts.size() - 1:
+			last = true
+		if i == 0 || currentSpeeds[i] == currentSpeeds[i-1]:
+			text_array.append(currentTexts[i])
+		elif currentSpeeds[i] != currentSpeeds[i-1]:
+			carray = close_text_array(text_array, i-1)
+			texts_array.append(carray)
+			text_array = [currentTexts[i]]
+		if last:
+			carray = close_text_array(text_array,i)
+			texts_array.append(carray)
+	contents[currentDialog][1] = texts_array
+	populate_texts_list()
+	message.set_text("Texts saved")
+	
+func close_text_array(array, index):
+	var text_array = []
+	text_array.append(array)
+	if !(currentSpeeds[index] in [0,1]):
+		text_array.append(currentSpeeds[index])
+	return text_array
+	
+func next_text():
+	save_texts()
+	create_text()
 
 ####### Dialog Manipulation #######
 
@@ -236,6 +282,8 @@ func create_dialog():
 	var new_dialog = [DEFAULT_POSITION, []]
 	contents.append(new_dialog)
 	populate_dialogs_list()
+	currentDialog = contents.size()
+	dialog_list.select(currentDialog)
 	
 func remove_dialog():
 	if currentDialog != null:
@@ -244,3 +292,12 @@ func remove_dialog():
 		currentDialog = null
 	else:
 		message.set_text("No dialog selected")
+		
+func save_dialog():
+	if currentDialog != null && contents[currentDialog].size() > 0:
+		contents[currentDialog][0] = get_position_from_form()
+	
+func get_position_from_form():
+	var v = vAlign.selected
+	var h = hAlign.selected
+	return str(VPOS[v], HPOS[h])
