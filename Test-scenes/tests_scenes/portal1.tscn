@@ -158,11 +158,13 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5938, 0 )
 [node name="Position" parent="Positions" index="0" instance=ExtResource( 7 )]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.100217, 0, -2.1116 )
+_sections_unfolded = [ "Transform" ]
 tag = "A"
 
 [node name="Position2" parent="Positions" index="1" instance=ExtResource( 7 )]
 
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.47692, 0.911463, -0.186698 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.66671, 0.911463, -0.186698 )
+_sections_unfolded = [ "Transform" ]
 tag = "B"
 
 

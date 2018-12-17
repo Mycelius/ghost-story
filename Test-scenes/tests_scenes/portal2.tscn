@@ -221,19 +221,19 @@ acceleration = 8
 
 [node name="Portal_wall" parent="." index="11" instance=ExtResource( 4 )]
 
+editor/display_folded = true
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 28.1041, 0.00248861, -6.02611 )
 script = ExtResource( 5 )
 
 [node name="Portal" parent="Portal_wall" index="2" instance=ExtResource( 6 )]
 
-editor/display_folded = true
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.191661, -0.00248861, 0.370829 )
+transform = Transform( 1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -0.191661, -0.00248861, 0.370829 )
 scene = "res://tests_scenes/portal1.tscn"
 tag = "A"
 
 [node name="CollisionShape" parent="Portal_wall/Portal" index="0"]
 
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0575314, 1.92588, 0.0628324 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.163479, 1.92588, 0.0628319 )
 
 [node name="Positions" type="Node" parent="." index="12"]
 

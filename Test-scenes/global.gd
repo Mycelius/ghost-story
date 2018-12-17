@@ -33,10 +33,5 @@ func _player_position(scene, tag):
 func _camera_rotation(scene, angle, pos):
 	if scene.has_node("camera-system") && pos != null:
 		var camera = scene.get_node("camera-system")
-		var vec1 = pos.get_transform().basis.z
-		var vec2 = camera.get_transform().basis.z
-		var vec3 = - vec2
-		var arrival_angle = round(rad2deg(vec1.angle_to(vec2)))
-		print(vec3.dot(vec1))
-		print(angle, " - ", arrival_angle)
-		#camera.rotate_y(deg2rad(450 - angle - arrival_angle))
+		var pos_angle = pos.transform.basis.get_euler().y
+		camera.rotate_y(pos_angle + PI/4 - angle)
