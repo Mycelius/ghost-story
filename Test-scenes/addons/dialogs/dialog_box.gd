@@ -15,12 +15,27 @@ var dialog_box_scene
 var dialog_box
 var dialog
 export (String, FILE, "*.json") var json_file
+export (String) var language = null
 
 signal blockFinished(part)
 
 func _enter_tree():
 	dialog_box_scene = preload("res://addons/dialogs/dialogs.tscn")
 	var file = File.new()
+	if language != null:
+		var regex = RegEx.new()
+		regex.compile("([^\\.]*)(\\.(?<language>[a-z]{2}))?\\.json")
+		var result = regex.search(json_file)
+		if result:
+			var file_name_root = result.get_string(1)
+			var file_lng = result.get_string("language")
+			if file_lng != language:
+				var new_name = str(file_name_root, ".", language, ".json")
+				if file.file_exists(new_name):
+					json_file = new_name
+				else:
+					print("file don't exist")
+			
 	file.open(json_file, file.READ)
 	dialog = JSON.parse(file.get_as_text())
 	
@@ -71,3 +86,6 @@ func set_box_size(pos):
 		pos_top = height
 	elif pos in ["B", "BL", "BM", "BR"]:
 		pos_top = (2 * height) - BLOCK_MARGIN
+
+func set_language(lng):
+	language = lng
