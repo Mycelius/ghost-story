@@ -14,6 +14,9 @@ var pos_left = 0.00
 var dialog_box_scene
 var dialog_box
 var dialog
+
+var queue = []
+var is_running = false
 export (String, FILE, "*.json") var json_file
 export (String) var language = null
 
@@ -44,16 +47,24 @@ func _enter_tree():
 	
 func start_dialog(part):
 	if dialog.result.size() >= part:
-		var part_array = dialog.result[part - 1]
-		var pos = part_array[0]
-		var texts = part_array[1]
-		start_dialog_box(texts, pos, part)
+		if !is_running:
+			var part_array = dialog.result[part - 1]
+			var pos = part_array[0]
+			var texts = part_array[1]
+			start_dialog_box(texts, pos, part)
+		else:
+			in_queue(part)
 		
 func remove_dialog(part):
+	is_running = false
+	if part in queue:
+		queue.erase(part)
 	remove_child(dialog_box)
 	emit_signal("blockFinished", part)
+	play_queue()
 
 func start_dialog_box(texts, pos, part):
+	is_running = true
 	set_box_size(pos)
 	dialog_box = dialog_box_scene.instance()
 	dialog_box.connect("text_finished", self, "remove_dialog", [part])
@@ -62,7 +73,15 @@ func start_dialog_box(texts, pos, part):
 	rect_scale = Vector2(1,1)
 	dialog_box.set_dialog(texts)
 	add_child(dialog_box)
-	
+
+func in_queue(part):
+	if !(part in queue):
+		queue.append(part)
+		
+func play_queue():
+	if queue.size() > 0:
+		start_dialog(queue[0])
+
 func set_box_size(pos):
 	
 	height = round(viewport_h / 3)
