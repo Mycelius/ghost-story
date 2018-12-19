@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://camera_system/camera-system.tscn" type="PackedScene" id=1]
 [ext_resource path="res://wall.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ghost.tscn" type="PackedScene" id=3]
+[ext_resource path="res://concrete_ball.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -127,6 +128,10 @@ proximity_fade_enable = false
 distance_fade_enable = false
 _sections_unfolded = [ "Albedo", "Roughness" ]
 
+[sub_resource type="ConvexPolygonShape" id=6]
+
+points = PoolVector3Array( -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, -1, -1, -1, -1, 1, -1, 1, -1, -1 )
+
 [node name="Main-scene" type="Spatial" index="0"]
 
 [node name="camera-system" parent="." index="0" instance=ExtResource( 1 )]
@@ -158,12 +163,13 @@ _sections_unfolded = [ "Transform", "material" ]
 
 input_ray_pickable = true
 input_capture_on_drag = false
-collision_layer = 1
+collision_layer = 3
 collision_mask = 1
 friction = 1.0
 bounce = 0.0
 constant_linear_velocity = Vector3( 0, 0, 0 )
 constant_angular_velocity = Vector3( 0, 0, 0 )
+_sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="MeshInstance/StaticBody" index="0"]
 
@@ -182,6 +188,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="MeshInstance" parent="Wall03" index="0"]
 
+editor/display_folded = true
 transform = Transform( 8.10758, 0, 1.4884e-08, 0, 3, 0, 2.23259e-07, 0, 0.2, 0, 3, 0 )
 
 [node name="Wall04" parent="." index="4" instance=ExtResource( 2 )]
@@ -202,9 +209,11 @@ _sections_unfolded = [ "Transform" ]
 [node name="ghost" parent="." index="6" instance=ExtResource( 3 )]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5938, -6.61412 )
+_sections_unfolded = [ "Collision" ]
 
 [node name="MeshInstance2" type="MeshInstance" parent="." index="7"]
 
+editor/display_folded = true
 transform = Transform( 2.77175, 0, 0, 0, 2.83421, 0, 0, 0, 0.208536, 0, 3.11733, 0 )
 layers = 1
 material_override = null
@@ -219,6 +228,30 @@ mesh = SubResource( 4 )
 skeleton = NodePath("..")
 material/0 = SubResource( 5 )
 _sections_unfolded = [ "material" ]
+
+[node name="StaticBody" type="StaticBody" parent="MeshInstance2" index="0"]
+
+input_ray_pickable = true
+input_capture_on_drag = false
+collision_layer = 2
+collision_mask = 2
+friction = 1.0
+bounce = 0.0
+constant_linear_velocity = Vector3( 0, 0, 0 )
+constant_angular_velocity = Vector3( 0, 0, 0 )
+_sections_unfolded = [ "Collision" ]
+
+[node name="CollisionShape" type="CollisionShape" parent="MeshInstance2/StaticBody" index="0"]
+
+shape = SubResource( 6 )
+disabled = false
+
+[node name="ConcreteBall" parent="." index="8" instance=ExtResource( 4 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.72544, 3.70535 )
+collision_layer = 3
+collision_mask = 3
+_sections_unfolded = [ "Angular", "Collision", "Linear" ]
 
 
 [editable path="Wall03"]
