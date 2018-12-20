@@ -1,4 +1,4 @@
-extends Spatial
+extends Position3D
 
 export(String) var tag
 

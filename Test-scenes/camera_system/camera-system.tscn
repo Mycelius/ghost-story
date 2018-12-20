@@ -30,8 +30,8 @@ projection = 1
 current = false
 fov = 70.0
 size = 12.0
-near = 0.0
-far = 100.0
+near = 10.0
+far = 50.0
 _sections_unfolded = [ "Transform" ]
 
 

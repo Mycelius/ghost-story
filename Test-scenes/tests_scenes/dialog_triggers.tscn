@@ -70,7 +70,7 @@ distance_fade_enable = false
 
 points = PoolVector3Array( -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, -1, -1, -1, -1, 1, -1, 1, -1, -1 )
 
-[node name="Main-scene" type="Spatial" index="0"]
+[node name="Main-scene" type="Spatial"]
 
 [node name="camera-system" parent="." index="0" instance=ExtResource( 1 )]
 
@@ -220,8 +220,6 @@ transform = Transform( 8.45922, 0, 0, 0, 3, 0, 0, 0, 0.2, 0, 3, 0 )
 [node name="ghost" parent="." index="11" instance=ExtResource( 3 )]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5938, 0 )
-speed = 9
-acceleration = 8
 
 [node name="Dialog" type="Control" parent="." index="12"]
 

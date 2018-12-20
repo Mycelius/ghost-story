@@ -67,7 +67,7 @@ distance_fade_enable = false
 
 points = PoolVector3Array( -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, -1, -1, -1, -1, 1, -1, 1, -1, -1 )
 
-[node name="Main-scene" type="Spatial" index="0"]
+[node name="Main-scene" type="Spatial"]
 
 [node name="camera-system" parent="." index="0" instance=ExtResource( 1 )]
 
@@ -156,6 +156,7 @@ transform = Transform( 8.58677, 0, 0, 0, 3, 0, 0, 0, 0.2, 0, 3, 0 )
 
 [node name="Wall05" parent="." index="4" instance=ExtResource( 2 )]
 
+editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8651, 0, -9.19404 )
 _sections_unfolded = [ "Transform" ]
 
@@ -170,6 +171,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Wall08" parent="." index="6" instance=ExtResource( 2 )]
 
+editor/display_folded = true
 transform = Transform( 1, 0, 1.11759e-07, 0, 1, 0, -1.11759e-07, 0, 1, 5.43911, -0.0168471, -6.41549 )
 _sections_unfolded = [ "Transform" ]
 
@@ -179,6 +181,7 @@ transform = Transform( -1.31134e-07, 0, 0.2, 0, 3, 0, -3, 0, -8.74228e-09, 0, 3,
 
 [node name="Wall04" parent="." index="7" instance=ExtResource( 2 )]
 
+editor/display_folded = true
 transform = Transform( -1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 11.3359, 0, -0.015009 )
 _sections_unfolded = [ "Transform" ]
 
@@ -193,6 +196,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Wall02" parent="." index="9" instance=ExtResource( 2 )]
 
+editor/display_folded = true
 transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, 3.18018 )
 _sections_unfolded = [ "Transform" ]
 
@@ -213,8 +217,6 @@ transform = Transform( 8.45922, 0, 0, 0, 3, 0, 0, 0, 0.2, 0, 3, 0 )
 [node name="ghost" parent="." index="11" instance=ExtResource( 3 )]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5938, 0 )
-speed = 9
-acceleration = 8
 
 
 [editable path="Wall01"]

@@ -5,7 +5,7 @@
 [ext_resource path="res://ghost.tscn" type="PackedScene" id=3]
 [ext_resource path="res://portal_wall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://is_wall.gd" type="Script" id=5]
-[ext_resource path="res://portal.tscn" type="PackedScene" id=6]
+[ext_resource path="res://InnerPortal.tscn" type="PackedScene" id=6]
 [ext_resource path="res://position.tscn" type="PackedScene" id=7]
 
 [sub_resource type="CubeMesh" id=1]
@@ -71,7 +71,7 @@ distance_fade_enable = false
 
 points = PoolVector3Array( -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, -1, -1, -1, -1, 1, -1, 1, -1, -1 )
 
-[node name="Main-scene" type="Spatial"]
+[node name="Main-scene" type="Spatial" index="0"]
 
 [node name="camera-system" parent="." index="0" instance=ExtResource( 1 )]
 
@@ -83,7 +83,7 @@ camera_height = 12.0
 [node name="MeshInstance" type="MeshInstance" parent="." index="1"]
 
 editor/display_folded = true
-transform = Transform( 11.1833, 0, 0, 0, 0.2, 0, 0, 0, 3, 0, 0.2, 0 )
+transform = Transform( 3, 0, 0, 0, 0.2, 0, 0, 0, 8.05999, 0, 0.2, 0 )
 layers = 1
 material_override = null
 cast_shadow = 1
@@ -102,12 +102,13 @@ _sections_unfolded = [ "Transform", "material" ]
 
 input_ray_pickable = true
 input_capture_on_drag = false
-collision_layer = 1
+collision_layer = 3
 collision_mask = 1
 friction = 1.0
 bounce = 0.0
 constant_linear_velocity = Vector3( 0, 0, 0 )
 constant_angular_velocity = Vector3( 0, 0, 0 )
+_sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="MeshInstance/StaticBody" index="0"]
 
@@ -117,7 +118,7 @@ disabled = false
 [node name="MeshInstance2" type="MeshInstance" parent="." index="2"]
 
 editor/display_folded = true
-transform = Transform( 11.1833, 0, 0, 0, 0.2, 0, 0, 0, 3, 16.8408, 0.201508, -5.98918 )
+transform = Transform( 3, 0, 0, 0, 0.2, 0, 0, 0, 8.05999, 28.1562, 0.2, 0 )
 layers = 1
 material_override = null
 cast_shadow = 1
@@ -136,12 +137,13 @@ _sections_unfolded = [ "Transform", "material" ]
 
 input_ray_pickable = true
 input_capture_on_drag = false
-collision_layer = 1
+collision_layer = 3
 collision_mask = 1
 friction = 1.0
 bounce = 0.0
 constant_linear_velocity = Vector3( 0, 0, 0 )
 constant_angular_velocity = Vector3( 0, 0, 0 )
+_sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="MeshInstance2/StaticBody" index="0"]
 
@@ -150,101 +152,96 @@ disabled = false
 
 [node name="Wall01" parent="." index="3" instance=ExtResource( 2 )]
 
-editor/display_folded = true
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.99106, 0, -3.24558 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.23017 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="MeshInstance" parent="Wall01" index="0"]
-
-transform = Transform( 8.58677, 0, 0, 0, 3, 0, 0, 0, 0.2, 0, 3, 0 )
-
-[node name="Wall05" parent="." index="4" instance=ExtResource( 2 )]
+[node name="Wall03" parent="." index="4" instance=ExtResource( 2 )]
 
 editor/display_folded = true
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8651, 0, -9.19404 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3, 0, -0.015009 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="MeshInstance" parent="Wall05" index="0"]
-
-transform = Transform( 11.3212, 0, 0, 0, 3, 0, 0, 0, 0.2, 0, 3, 0 )
-
-[node name="Wall03" parent="." index="5" instance=ExtResource( 2 )]
-
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -11.5043, 0, -0.015009 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="Wall08" parent="." index="6" instance=ExtResource( 2 )]
+[node name="MeshInstance" parent="Wall03" index="0"]
 
 editor/display_folded = true
-transform = Transform( 1, 0, 1.11759e-07, 0, 1, 0, -1.11759e-07, 0, 1, 5.43911, -0.0168471, -6.41549 )
-_sections_unfolded = [ "Transform" ]
+transform = Transform( 8.10758, 0, 1.4884e-08, 0, 3, 0, 2.23259e-07, 0, 0.2, 0, 3, 0 )
 
-[node name="MeshInstance" parent="Wall08" index="0"]
-
-transform = Transform( -1.31134e-07, 0, 0.2, 0, 3, 0, -3, 0, -8.74228e-09, 0, 3, 0 )
-
-[node name="Wall04" parent="." index="7" instance=ExtResource( 2 )]
+[node name="Wall06" parent="." index="5" instance=ExtResource( 2 )]
 
 editor/display_folded = true
-transform = Transform( -1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 11.3359, 0, -0.015009 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 25.1562, 0, -0.015009 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="MeshInstance" parent="Wall06" index="0"]
+
+transform = Transform( 8.37632, 0, 1.56671e-08, 0, 3, 0, 2.35006e-07, 0, 0.2, 0, 3, 0 )
+
+[node name="Wall04" parent="." index="6" instance=ExtResource( 2 )]
+
+editor/display_folded = true
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 0, -0.015009 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="MeshInstance" parent="Wall04" index="0"]
 
-transform = Transform( -1.31134e-07, 0, 0.2, 0, 3, 0, -3, 0, -8.74228e-09, 0, 3, 0 )
+transform = Transform( 8.31082, 0, -1.54762e-08, 0, 3, 0, -2.32143e-07, 0, 0.2, 0, 3, 0 )
 
-[node name="Wall02" parent="." index="8" instance=ExtResource( 2 )]
-
-editor/display_folded = true
-transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, 3.18018 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="MeshInstance" parent="Wall02" index="0"]
-
-transform = Transform( 11.6104, 0, 0, 0, 3, 0, 0, 0, 0.2, 0, 3, 0 )
-
-[node name="Wall07" parent="." index="9" instance=ExtResource( 2 )]
+[node name="Wall07" parent="." index="7" instance=ExtResource( 2 )]
 
 editor/display_folded = true
-transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 19.9034, 0, -2.82388 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 31.1562, 0, -0.015009 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="MeshInstance" parent="Wall07" index="0"]
 
-transform = Transform( 8.45922, 0, 0, 0, 3, 0, 0, 0, 0.2, 0, 3, 0 )
+transform = Transform( 8.25692, 0, -1.53192e-08, 0, 3, 0, -2.29788e-07, 0, 0.2, 0, 3, 0 )
 
-[node name="ghost" parent="." index="10" instance=ExtResource( 3 )]
+[node name="Wall08" parent="." index="8" instance=ExtResource( 2 )]
 
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5938, 0 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 28.1562, 0, 8.17136 )
+_sections_unfolded = [ "Transform" ]
 
-[node name="Portal_wall" parent="." index="11" instance=ExtResource( 4 )]
+[node name="ghost" parent="." index="9" instance=ExtResource( 3 )]
 
-editor/display_folded = true
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 28.1041, 0.00248861, -6.02611 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5938, -6.61412 )
+_sections_unfolded = [ "Collision" ]
+has_move_power = true
+
+[node name="Portal_wall" parent="." index="10" instance=ExtResource( 4 )]
+
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -6.69722e-09, 0, 8.29684 )
 script = ExtResource( 5 )
 
-[node name="Portal" parent="Portal_wall" index="2" instance=ExtResource( 6 )]
+[node name="InnerPortal" parent="Portal_wall" index="2" instance=ExtResource( 6 )]
 
-transform = Transform( 1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -0.191661, -0.00248861, 0.370829 )
-scene = "res://tests_scenes/portal1.tscn"
+editor/display_folded = true
+transform = Transform( 1, 0, -2.38419e-07, 0, 1, 0, 2.38419e-07, 0, 1, -0.0121996, 2.00805, 0.308045 )
 tag = "A"
 
-[node name="CollisionShape" parent="Portal_wall/Portal" index="0"]
+[node name="Portal_wall2" parent="." index="11" instance=ExtResource( 4 )]
 
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.163479, 1.92588, 0.0628319 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28.1619, 0, -8.33687 )
+script = ExtResource( 5 )
+
+[node name="InnerPortal" parent="Portal_wall2" index="2" instance=ExtResource( 6 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.80464, 0.231387 )
+tag = "B"
 
 [node name="Positions" type="Node" parent="." index="12"]
 
-[node name="Position" parent="Positions" index="0" instance=ExtResource( 7 )]
+[node name="Position1" parent="Positions" index="0" instance=ExtResource( 7 )]
 
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 26.3571, 0.441746, -6.16698 )
+transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -0.0818698, 2.30543, 6.5498 )
+tag = "B"
+
+[node name="Position2" parent="Positions" index="1" instance=ExtResource( 7 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28.15, 1.41089, -6.51886 )
 tag = "A"
 
 
-[editable path="Wall01"]
-[editable path="Wall05"]
-[editable path="Wall08"]
+[editable path="Wall03"]
+[editable path="Wall06"]
 [editable path="Wall04"]
-[editable path="Wall02"]
 [editable path="Wall07"]
-[editable path="Portal_wall/Portal"]

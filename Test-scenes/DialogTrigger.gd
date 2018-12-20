@@ -7,7 +7,7 @@ var dialog = null
 var active = true
 
 func _ready():
-	dialog = get_node("../Dialog")
+	dialog = get_tree().get_current_scene().get_node("Dialog")
 
 
 func _on_body_entered(body):
