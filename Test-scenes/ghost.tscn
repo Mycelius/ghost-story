@@ -125,7 +125,7 @@ distance_fade_enable = false
 radius = 0.543134
 height = 1.39284
 
-[node name="ghost" type="KinematicBody" index="0"]
+[node name="ghost" type="KinematicBody"]
 
 input_ray_pickable = true
 input_capture_on_drag = false
@@ -139,10 +139,11 @@ axis_lock_angular_y = false
 axis_lock_angular_z = false
 collision/safe_margin = 0.001
 script = ExtResource( 1 )
-speed = 7
+speed = 7.0
 gravity = -9.8
-acceleration = 5
-deceleration = 7
+acceleration = 5.0
+deceleration = 7.0
+has_move_power = false
 
 [node name="MeshInstance" type="MeshInstance" parent="." index="0"]
 
@@ -184,5 +185,13 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.17
 shape = SubResource( 5 )
 disabled = false
 _sections_unfolded = [ "Transform" ]
+
+[node name="Power" type="RayCast" parent="." index="3"]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0114266, 0.63693, 0.497004 )
+enabled = false
+exclude_parent = true
+cast_to = Vector3( 0, 0, 0.6 )
+collision_mask = 3
 
 

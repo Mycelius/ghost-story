@@ -72,8 +72,8 @@ input_capture_on_drag = false
 collision_layer = 2
 collision_mask = 2
 mode = 0
-mass = 20.4082
-friction = 0.0
+mass = 25.0
+friction = 1.0
 bounce = 0.01
 gravity_scale = 20.0
 custom_integrator = false
@@ -89,9 +89,9 @@ axis_lock_angular_x = false
 axis_lock_angular_y = false
 axis_lock_angular_z = false
 linear_velocity = Vector3( 0, 0, 0 )
-linear_damp = -1.0
+linear_damp = 0.8
 angular_velocity = Vector3( 0, 0, 0 )
-angular_damp = -1.0
+angular_damp = 0.8
 _sections_unfolded = [ "Angular", "Linear" ]
 
 [node name="MeshInstance" type="MeshInstance" parent="." index="0"]
