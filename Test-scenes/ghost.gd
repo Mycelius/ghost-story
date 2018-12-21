@@ -5,10 +5,11 @@ export (float) var gravity = -9.80
 export (float) var acceleration = 5.00
 export (float) var deceleration = 7.00
 export (bool) var has_move_power = false
-
-const MAX_MOVE_POWER = 5
+export (bool) var has_stairs_power = false
+export (int) var max_move_power = 5
 
 var move_power = 0
+var stairs_power = false
 var timer
 
 var direction = Vector3()
@@ -54,6 +55,8 @@ func keyboard_process():
 	if has_move_power && Input.is_action_just_released("ui_select"):
 		release_power()
 		is_charging = false
+	if has_stairs_power && Input.is_action_just_pressed("stairs_switch"):
+		switch_stairs()
 		
 		
 func move_process(delta):
@@ -85,13 +88,26 @@ func move_process(delta):
 		char_rot.y = angle
 		set_rotation(char_rot)
 
+func switch_stairs():
+	var stairs_light = $StairsLight
+	if stairs_power:
+		stairs_light.hide()
+		set_collision_mask_bit(2,false)
+		stairs_power = false
+	else:
+		var stairs_test = $Stairs_test_area
+		if stairs_test.get_overlapping_bodies().size() == 0:
+			stairs_light.show()
+			set_collision_mask_bit(2,true)
+			stairs_power = true
+
 func start_charging():
 	_charge()
 	timer.set_wait_time(0.5)
 	timer.start()
 
 func _charge():
-	if move_power < MAX_MOVE_POWER:
+	if move_power < max_move_power:
 		move_power += 0.5
 		print(move_power)
 
