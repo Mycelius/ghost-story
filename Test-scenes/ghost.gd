@@ -96,12 +96,12 @@ func _charge():
 		print(move_power)
 
 func release_power():
-	var power = $Power
-	power.force_raycast_update()
-	if power.is_colliding():
-		var body = power.get_collider()
-		if body.has_method("power_hit"):
-			body.power_hit(move_power, power.get_collision_point())
+	var power = $Power_area
+	var hitobjects = power.get_overlapping_bodies()
+	for ob in hitobjects:
+		if ob.has_method("power_hit"):
+			var direction = get_global_transform().basis.z.normalized()
+			ob.power_hit(move_power, direction)
 	timer.stop()
 	move_power = 0
 	
