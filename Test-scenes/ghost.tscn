@@ -134,7 +134,7 @@ radius = 0.424526
 radius = 0.530384
 height = 0.988209
 
-[node name="ghost" type="KinematicBody"]
+[node name="ghost" type="KinematicBody" index="0"]
 
 input_ray_pickable = true
 input_capture_on_drag = false

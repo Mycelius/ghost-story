@@ -72,8 +72,8 @@ points = PoolVector3Array( -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, 1,
 
 transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 2, 0 )
 _sections_unfolded = [ "Transform" ]
-camera_distance = 10.0
-camera_height = 4.5
+camera_distance = 25.0
+camera_height = 12.0
 
 [node name="MeshInstance" type="MeshInstance" parent="." index="1"]
 

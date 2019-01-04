@@ -50,8 +50,9 @@ func process_input():
 func process_move(delta):
 	## Follow player
 	#get player position
-	player_position = get_parent().get_node("ghost").global_transform.origin
-	pivot.global_transform.origin = player_position
+	if get_parent().get_node("ghost"):
+		player_position = get_parent().get_node("ghost").global_transform.origin
+		pivot.global_transform.origin = player_position
 	
 	## Rotate camera
 	if (rotation_offset != 0 || rotate_again != 0) && !is_rotating:
