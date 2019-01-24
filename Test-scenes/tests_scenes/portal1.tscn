@@ -71,7 +71,7 @@ distance_fade_enable = false
 
 points = PoolVector3Array( -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, -1, -1, -1, -1, 1, -1, 1, -1, -1 )
 
-[node name="Main-scene" type="Spatial" index="0"]
+[node name="Main-scene" type="Spatial"]
 
 [node name="camera-system" parent="." index="0" instance=ExtResource( 1 )]
 
@@ -116,7 +116,6 @@ disabled = false
 
 [node name="Portal" parent="." index="2" instance=ExtResource( 2 )]
 
-editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.21968 )
 script = ExtResource( 3 )
 

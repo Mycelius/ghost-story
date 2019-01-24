@@ -149,7 +149,6 @@ disabled = false
 
 [node name="Wall01" parent="." index="3" instance=ExtResource( 2 )]
 
-editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.99106, 0, -3.24558 )
 _sections_unfolded = [ "Transform" ]
 
@@ -244,12 +243,12 @@ language = null
 
 [node name="DialogTrigger1" parent="." index="13" instance=ExtResource( 6 )]
 
-editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5234, 0.662416, 0 )
 one_shot = true
 
 [node name="DialogTrigger2" parent="." index="14" instance=ExtResource( 6 )]
 
+editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.36151, 0.662416, -4.0358 )
 dialog_num = 2
 
@@ -266,3 +265,5 @@ one_shot = true
 [editable path="Wall04"]
 [editable path="Wall02"]
 [editable path="Wall07"]
+[editable path="DialogTrigger1"]
+[editable path="DialogTrigger2"]

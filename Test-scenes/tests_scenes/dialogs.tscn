@@ -134,7 +134,7 @@ subdivide_depth = 0
 
 points = PoolVector3Array( -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, -1, -1, -1, -1, 1, -1, 1, -1, -1 )
 
-[node name="Main-scene" type="Spatial"]
+[node name="Main-scene" type="Spatial" index="0"]
 
 script = ExtResource( 1 )
 
@@ -265,11 +265,10 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 script = ExtResource( 4 )
-_sections_unfolded = [ "Rect" ]
 __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
-json_file = "res://tests_scenes/dialogs/dialogue_test.json"
+json_file = "res://tests_scenes/dialogs/dialogue1.json"
 language = null
 
 
