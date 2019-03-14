@@ -1,7 +1,5 @@
 extends Spatial
 
-onready var Easing = preload("res://utils/easing.gd")
-
 const ROTATION_DURATION = 1.0
 const ROTATION_STEP = 90.0
 export (float) var camera_distance
@@ -14,9 +12,7 @@ var pivot
 var camera
 var camera_rotation
 var is_rotating
-var rotation_dir
-var rotation_time
-var rotate_again
+var tween
 
 func _ready():
 	rotation_offset = 0
@@ -24,7 +20,7 @@ func _ready():
 	camera = $pivot/camera
 	camera_rotation = 0
 	is_rotating = false
-	rotate_again = 0
+	tween = get_node("Tween")
 	
 	# Place the camera
 	camera.transform.origin.z -= camera_distance
@@ -38,7 +34,7 @@ func _ready():
 
 func _process(delta):
 	process_input()
-	process_move(delta)
+	process_move()
 	
 func process_input():
 	rotation_offset = 0
@@ -46,36 +42,26 @@ func process_input():
 		rotation_offset -= 1
 	elif Input.is_action_just_pressed("camera_right"):
 		rotation_offset += 1
+	rotate_camera(rotation_offset)
 		
-func process_move(delta):
+func process_move():
 	## Follow player
 	#get player position
 	if get_parent().get_node("ghost"):
 		player_position = get_parent().get_node("ghost").global_transform.origin
 		pivot.global_transform.origin = player_position
 	
-	## Rotate camera
-	if (rotation_offset != 0 || rotate_again != 0) && !is_rotating:
-		rotation_dir = rotation_offset if rotation_offset != 0 else rotate_again
+func rotate_camera(rotation_offset):
+	if rotation_offset != 0 && !is_rotating:
 		is_rotating = true
-		rotation_time = 0
-		camera_rotation = 0
-		rotate_again = 0
-	elif rotation_offset != 0 && is_rotating && rotation_time >= (ROTATION_DURATION * 0.5):
-		rotate_again = rotation_offset
-	
-	if is_rotating:
-		
-		if rotation_time > ROTATION_DURATION:
-			rotation_time = ROTATION_DURATION
-		var laststep = camera_rotation
-		camera_rotation = (Easing.Cubic.easeOut(rotation_time, 0.0, ROTATION_STEP, ROTATION_DURATION))
-		
-		if rotation_time == ROTATION_DURATION:
-			is_rotating = false
-		else:
-			rotation_time += delta
-		
-		pivot.rotate_object_local(Vector3(0,1,0), deg2rad((camera_rotation - laststep) * rotation_dir))
-	else:
-		pivot.transform = pivot.transform.orthonormalized()
+		tween.interpolate_property(pivot, "rotation_degrees", 
+			pivot.rotation_degrees, 
+			Vector3(0,pivot.rotation_degrees.y + (ROTATION_STEP * rotation_offset),0), 
+			ROTATION_DURATION, 
+			Tween.TRANS_QUAD,
+			Tween.EASE_IN_OUT)
+		tween.start()
+
+func _camera_rotation_complete(object, key):
+	pivot.transform = pivot.transform.orthonormalized()
+	is_rotating = false

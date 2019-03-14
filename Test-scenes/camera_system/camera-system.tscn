@@ -11,6 +11,7 @@ camera_height = null
 
 [node name="pivot" type="Spatial" parent="." index="0"]
 
+editor/display_folded = true
 _sections_unfolded = [ "Transform" ]
 
 [node name="player-direction" type="Spatial" parent="pivot" index="0"]
@@ -33,5 +34,16 @@ size = 12.0
 near = 10.0
 far = 50.0
 _sections_unfolded = [ "Transform" ]
+
+[node name="Tween" type="Tween" parent="." index="1"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[connection signal="tween_completed" from="Tween" to="." method="_camera_rotation_complete"]
 
 
