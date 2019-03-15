@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://infinite_level.gd" type="Script" id=1]
+[ext_resource path="res://tests_scenes/infinite_level.gd" type="Script" id=1]
 [ext_resource path="res://camera_system/camera-system.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ghost.tscn" type="PackedScene" id=3]
 
