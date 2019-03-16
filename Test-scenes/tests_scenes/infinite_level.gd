@@ -3,17 +3,30 @@ extends Spatial
 onready var tile = load("res://infinite_tile.tscn")
 
 var TILE_SIZE = 4.0
+var tiles = []
+var current_tile = Vector2(0.0, 0.0)
 
 func _ready():
-	draw_tiles()
+	init_tiles()
 
-func _player_entered():
-	print("hello")
+func _player_entered(entered):
+	if entered != current_tile:
+		update_tiles(entered)
+		current_tile = entered
 	
-func draw_tiles():
-	var tiles = []
+func init_tiles():
 	for i in range(3):
-		tiles.append(tile.instance())
-		tiles[i].connect("player_entered", self, "_player_entered")
-		tiles[i].translate(Vector3(TILE_SIZE * i,0.0,0.0))
-		add_child(tiles[i])
+		tiles.append([])
+		for j in range(3):
+			add_tile(i, j)
+
+func update_tiles(entered):
+	pass
+	
+func add_tile(i, j):
+	var x = TILE_SIZE * (i - 1.0)
+	var y = TILE_SIZE * (j - 1.0)
+	tiles[i].append(tile.instance())
+	tiles[i][j].translate(Vector3(x,0.0,y))
+	tiles[i][j].connect("player_entered", self, "_player_entered", [Vector2(x, y)])
+	add_child(tiles[i][j])
