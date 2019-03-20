@@ -18,7 +18,7 @@ func init_tiles():
 	for i in range(3):
 		tiles.append([])
 		for j in range(3):
-			add_tile(i, j)
+			add_tile(tiles, i, j)
 
 func update_tiles(entered):
 	if current_tile_pos.x - entered.x > 0:
@@ -36,15 +36,15 @@ func shift_tiles(direction, axis):
 	for i in range(3):
 		new_tiles.append([])
 		if axis == "y":
-			pass
+			print(axis, direction)
 		for j in range(3):
 			if axis == "x":
-				pass
+				print(axis, direction)
 
-func add_tile(i, j):
+func add_tile(tiles_array, i, j):
 	var x = current_tile_pos.x + TILE_SIZE * (i - 1.0)
 	var y = current_tile_pos.y + TILE_SIZE * (j - 1.0)
-	tiles[i].append(tile.instance())
-	tiles[i][j].translate(Vector3(x,0.0,y))
-	tiles[i][j].connect("player_entered", self, "_player_entered", [Vector2(x, y)])
-	add_child(tiles[i][j])
+	tiles_array[i].append(tile.instance())
+	tiles_array[i][j].translate(Vector3(x,0.0,y))
+	tiles_array[i][j].connect("player_entered", self, "_player_entered", [Vector2(x, y)])
+	add_child(tiles_array[i][j])
