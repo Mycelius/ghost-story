@@ -15,3 +15,7 @@ camera_height = 12.0
 [node name="ghost" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1906, 0.48803, 2.09147 )
 
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.830544, 0.379755, -0.40741, 0.0158104, 0.715127, 0.698815, 0.556729, -0.586838, 0.587941, 0, 7.9003, 0 )
+shadow_enabled = true
+

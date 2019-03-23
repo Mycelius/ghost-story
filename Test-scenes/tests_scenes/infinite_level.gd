@@ -36,7 +36,8 @@ func remove_tiles(move):
 	if move.x != 0:
 		var c = 1 + move.x
 		for i in range(3):
-			remove_child(tiles[c][i])
+			if tiles[c][i] != null:
+				remove_child(tiles[c][i])
 		tiles[c] = null
 			
 func slide_array(move):
@@ -45,7 +46,8 @@ func slide_array(move):
 		new_tiles = shift_array(new_tiles, move.x)
 	if move.y != 0:
 		for i in range(3):
-			new_tiles[i] = shift_array(new_tiles[i], move.y)
+			if new_tiles[i] != null:
+				new_tiles[i] = shift_array(new_tiles[i], move.y)
 	tiles = new_tiles
 
 func shift_array(to_shift, direction):
