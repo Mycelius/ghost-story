@@ -11,40 +11,81 @@ func _ready():
 
 func _player_entered(entered):
 	if entered != current_tile_pos:
-		update_tiles(entered)
+		var move = get_move(entered)
 		current_tile_pos = entered
+		update_tiles(move)
+		
 	
 func init_tiles():
 	for i in range(3):
 		tiles.append([])
 		for j in range(3):
-			add_tile(tiles, i, j)
+			add_tile(i, j)
 
-func update_tiles(entered):
+func update_tiles(move):
+	remove_tiles(move)
+	slide_array(move)
+	refill_tiles()
+
+func remove_tiles(move):
+	if move.y != 0:
+		var c = 1 + move.y
+		for i in range(3):
+			remove_child(tiles[i][c])
+			tiles[i][c] = null
+	if move.x != 0:
+		var c = 1 + move.x
+		for i in range(3):
+			remove_child(tiles[c][i])
+		tiles[c] = null
+			
+func slide_array(move):
+	var new_tiles = tiles
+	if move.x != 0:
+		new_tiles = shift_array(new_tiles, move.x)
+	if move.y != 0:
+		for i in range(3):
+			new_tiles[i] = shift_array(new_tiles[i], move.y)
+	tiles = new_tiles
+
+func shift_array(to_shift, direction):
+	if direction > 0:
+		to_shift.pop_back()
+		to_shift.push_front(null)
+	elif direction < 0:
+		to_shift.pop_front()
+		to_shift.push_back(null)
+	return to_shift
+
+func refill_tiles():
+	for i in range(3):
+		if tiles[i] == null:
+			tiles[i] = []
+		for j in range(3):
+			if tiles[i].size() < 3 || tiles[i][j] == null:
+				add_tile(i,j)
+
+func get_move(entered):
+	var current_move = Vector2(0,0)
 	if current_tile_pos.x - entered.x > 0:
-		shift_tiles(1,"x")
+		current_move.x = 1
 	elif current_tile_pos.x - entered.x < 0:
-		shift_tiles(-1, "x")
+		current_move.x = -1
 		
 	if current_tile_pos.y - entered.y > 0:
-		shift_tiles(1,"y")
+		current_move.y = 1
 	elif current_tile_pos.y - entered.y < 0:
-		shift_tiles(-1, "y")
+		current_move.y = -1
+	
+	return current_move
 
-func shift_tiles(direction, axis):
-	var new_tiles = []
-	for i in range(3):
-		new_tiles.append([])
-		if axis == "y":
-			print(axis, direction)
-		for j in range(3):
-			if axis == "x":
-				print(axis, direction)
-
-func add_tile(tiles_array, i, j):
+func add_tile(i, j):
 	var x = current_tile_pos.x + TILE_SIZE * (i - 1.0)
 	var y = current_tile_pos.y + TILE_SIZE * (j - 1.0)
-	tiles_array[i].append(tile.instance())
-	tiles_array[i][j].translate(Vector3(x,0.0,y))
-	tiles_array[i][j].connect("player_entered", self, "_player_entered", [Vector2(x, y)])
-	add_child(tiles_array[i][j])
+	if tiles[i].size() == j:
+		tiles[i].append(tile.instance())
+	else:
+		tiles[i][j] = tile.instance()
+	tiles[i][j].translate(Vector3(x,0.0,y))
+	tiles[i][j].connect("player_entered", self, "_player_entered", [Vector2(x, y)])
+	add_child(tiles[i][j])
