@@ -4,27 +4,45 @@ onready var tile = load("res://infinite_tile.tscn")
 
 var TILE_SIZE = 4.0
 var tiles = []
+var next_tiles = []
 var current_tile_pos = Vector2(0.0, 0.0)
-var next_tile_pos = Vector2(0.0, 0.0)
+var wait = false
 
 func _ready():
 	init_tiles()
 
 func _player_entered(entered):
 	if entered != current_tile_pos:
-		next_tile_pos = entered
+		next_tiles.append(entered)
 		
 func _player_exited(exited):
-	if exited == current_tile_pos && next_tile_pos != current_tile_pos:
-		var move = get_move(next_tile_pos)
-		current_tile_pos = next_tile_pos
-		update_tiles(move)
+	if exited == current_tile_pos:
+		if next_tiles.size() > 2:
+			wait = true
+		else:
+			move(next_tiles[0])
+			
+	elif exited != current_tile_pos:
+		var index = next_tiles.find(exited)
+		if index > -1:
+			next_tiles.remove(index)
+			if wait && next_tiles.size() <= 2:
+				move(next_tiles[0])
+				wait = false
 	
 func init_tiles():
 	for i in range(3):
 		tiles.append([])
 		for j in range(3):
 			add_tile(i, j)
+
+func move(next_tile):
+	var index = next_tiles.find(next_tile)
+	if index > -1:
+		next_tiles.remove(index)
+	var move = get_move(next_tile)
+	current_tile_pos = next_tile
+	update_tiles(move)
 
 func update_tiles(move):
 	remove_tiles(move)

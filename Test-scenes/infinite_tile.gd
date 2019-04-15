@@ -4,7 +4,7 @@ signal player_entered
 signal player_exited
 
 func _ready():
-	pass # Replace with function body.
+	pass
 
 
 
