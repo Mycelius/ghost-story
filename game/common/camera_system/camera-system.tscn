@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://camera_system/camera-system.gd" type="Script" id=1]
+
+[node name="camera-system" type="Spatial"]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.400269, 0 )
+script = ExtResource( 1 )
+camera_distance = 0.0
+camera_height = null
+
+[node name="pivot" type="Spatial" parent="." index="0"]
+
+editor/display_folded = true
+_sections_unfolded = [ "Transform" ]
+
+[node name="player-direction" type="Spatial" parent="pivot" index="0"]
+
+transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="camera" type="Camera" parent="pivot" index="1"]
+
+keep_aspect = 1
+cull_mask = 1048575
+environment = null
+h_offset = 0.0
+v_offset = 0.0
+doppler_tracking = 0
+projection = 1
+current = false
+fov = 70.0
+size = 12.0
+near = 10.0
+far = 50.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="Tween" type="Tween" parent="." index="1"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[connection signal="tween_completed" from="Tween" to="." method="_camera_rotation_complete"]
+
+
