@@ -17,6 +17,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="BackgroundImage" type="TextureRect" parent="MainContainer"]
+visible = false
 margin_right = 1280.0
 margin_bottom = 720.0
 texture = ExtResource( 2 )
@@ -31,11 +32,13 @@ alignment = 1
 margin_top = 294.0
 margin_right = 1280.0
 margin_bottom = 358.0
+text = "new_game"
 scene_to_load = "res://level-00/Level_0.tscn"
 
 [node name="Options" parent="MainContainer/MenuContainer" instance=ExtResource( 4 )]
 margin_top = 362.0
 margin_right = 1280.0
 margin_bottom = 426.0
+text = "options"
 scene_to_load = "res://UI/Options.tscn"
 
