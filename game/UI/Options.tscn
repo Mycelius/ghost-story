@@ -28,7 +28,6 @@ text = "options"
 align = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-editor/display_folded = true
 margin_top = 84.0
 margin_right = 804.0
 margin_bottom = 139.0
@@ -55,7 +54,7 @@ margin_top = 143.0
 margin_right = 804.0
 margin_bottom = 223.0
 
-[node name="ApplyButton" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
+[node name="btn_Apply" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
 margin_right = 400.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 400, 80 )
@@ -63,7 +62,7 @@ custom_fonts/font = ExtResource( 4 )
 text = "apply"
 flat = true
 
-[node name="CancelButton" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
+[node name="btn_Cancel" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
 margin_left = 404.0
 margin_right = 804.0
 margin_bottom = 80.0

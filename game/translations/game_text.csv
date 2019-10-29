@@ -1,6 +1,8 @@
 id;fr;en
 new_game;Nouvelle partie;New game
+continue;Reprendre;Continue
 options;Options;Options
+quit;Quitter;Quit
 language;Langue;Language
 apply;Valider;Apply
 cancel;Annuler;Cancel

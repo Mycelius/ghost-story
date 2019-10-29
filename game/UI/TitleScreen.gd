@@ -1,10 +1,20 @@
-extends Control
+extends MarginContainer
 
 func _ready():
-	$MainContainer/MenuContainer.get_child(0).grab_focus()
-	for button in $MainContainer/MenuContainer.get_children():
-		button.connect("pressed", self, "_on_button_pressed", [button.scene_to_load])
+	$CenterContainer/MenuContainer/btn_newGame.connect("pressed",self,"newGame")
+	$CenterContainer/MenuContainer/btn_continueGame.connect("pressed",self,"continueGame")
+	$CenterContainer/MenuContainer/btn_options.connect("pressed",self,"options")
+	$CenterContainer/MenuContainer/btn_quit.connect("pressed",self,"quit")
 		
 
-func _on_button_pressed(scene_to_load):
-	get_tree().change_scene(scene_to_load)
+func newGame():
+	get_tree().change_scene("res://level-00/level_0.tscn")
+	
+func continueGame():
+	print("continue")
+	
+func options():
+	get_tree().change_scene("res://UI/Options.tscn")
+	
+func quit():
+	get_tree().quit()
