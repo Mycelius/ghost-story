@@ -1,11 +1,24 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://UI/TitleScreen.gd" type="Script" id=1]
 [ext_resource path="res://UI/images/title-screen-background.jpg" type="Texture" id=2]
-[ext_resource path="res://UI/NewGameButton.tscn" type="PackedScene" id=3]
-[ext_resource path="res://UI/OptionsButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://images/title_01.png" type="Texture" id=3]
+[ext_resource path="res://images/title_02.png" type="Texture" id=4]
+[ext_resource path="res://images/title_03.png" type="Texture" id=5]
+[ext_resource path="res://UI/NewGameButton.tscn" type="PackedScene" id=6]
+[ext_resource path="res://UI/OptionsButton.tscn" type="PackedScene" id=7]
 
-[node name="TitleScreen" type="MarginContainer"]
+[sub_resource type="AnimatedTexture" id=1]
+flags = 4
+frames = 3
+fps = 5.0
+frame_0/texture = ExtResource( 3 )
+frame_1/texture = ExtResource( 4 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 5 )
+frame_2/delay_sec = 0.0
+
+[node name="TitleScreen" type="Control"]
 margin_right = 1280.0
 margin_bottom = 720.0
 grow_horizontal = 2
@@ -19,37 +32,57 @@ margin_bottom = 720.0
 texture = ExtResource( 2 )
 expand = true
 
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 1280.0
+margin_bottom = 720.0
+texture = SubResource( 1 )
+
 [node name="CenterContainer" type="CenterContainer" parent="."]
+visible = false
 margin_right = 1280.0
 margin_bottom = 720.0
 
-[node name="MenuContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 524.0
-margin_top = 226.0
-margin_right = 756.0
-margin_bottom = 494.0
-alignment = 1
+[node name="Dummy" type="Control" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -445.0
+margin_top = 320.0
+margin_right = -183.0
+margin_bottom = 538.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 
-[node name="btn_newGame" parent="CenterContainer/MenuContainer" instance=ExtResource( 3 )]
+[node name="MenuContainer" type="VBoxContainer" parent="Dummy"]
+margin_right = 232.0
+margin_bottom = 268.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+alignment = 2
+
+[node name="btn_newGame" parent="Dummy/MenuContainer" instance=ExtResource( 6 )]
 margin_right = 232.0
 text = "new_game"
 script = null
 
-[node name="btn_continueGame" parent="CenterContainer/MenuContainer" instance=ExtResource( 3 )]
+[node name="btn_continueGame" parent="Dummy/MenuContainer" instance=ExtResource( 6 )]
 margin_top = 68.0
 margin_right = 232.0
 margin_bottom = 132.0
 text = "continue"
 script = null
 
-[node name="btn_options" parent="CenterContainer/MenuContainer" instance=ExtResource( 4 )]
+[node name="btn_options" parent="Dummy/MenuContainer" instance=ExtResource( 7 )]
 margin_top = 136.0
 margin_right = 232.0
 margin_bottom = 200.0
 text = "options"
 script = null
 
-[node name="btn_quit" parent="CenterContainer/MenuContainer" instance=ExtResource( 4 )]
+[node name="btn_quit" parent="Dummy/MenuContainer" instance=ExtResource( 7 )]
 margin_top = 204.0
 margin_right = 232.0
 margin_bottom = 268.0

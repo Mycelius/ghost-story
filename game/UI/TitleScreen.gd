@@ -1,14 +1,14 @@
-extends MarginContainer
+extends Control
 
 onready var config = get_node("/root/Config")
 
 func _ready():
-	$CenterContainer/MenuContainer/btn_newGame.connect("pressed",self,"newGame")
-	$CenterContainer/MenuContainer/btn_continueGame.connect("pressed",self,"continueGame")
-	$CenterContainer/MenuContainer/btn_options.connect("pressed",self,"options")
-	$CenterContainer/MenuContainer/btn_quit.connect("pressed",self,"quit")
+	$Dummy/MenuContainer/btn_newGame.connect("pressed",self,"newGame")
+	$Dummy/MenuContainer/btn_continueGame.connect("pressed",self,"continueGame")
+	$Dummy/MenuContainer/btn_options.connect("pressed",self,"options")
+	$Dummy/MenuContainer/btn_quit.connect("pressed",self,"quit")
 	
-	$CenterContainer/MenuContainer/btn_newGame.grab_focus()
+	$Dummy/MenuContainer/btn_newGame.grab_focus()
 	
 	
 
