@@ -1,9 +1,15 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://level-00/Level_0.gd" type="Script" id=1]
-[ext_resource path="res://images/01_01_01.png" type="Texture" id=2]
-[ext_resource path="res://images/01_01_02.png" type="Texture" id=3]
-[ext_resource path="res://images/01_01_03.png" type="Texture" id=4]
+[ext_resource path="res://UI/images_viewer.gd" type="Script" id=2]
+[ext_resource path="res://images/01_01_01.png" type="Texture" id=3]
+[ext_resource path="res://images/01_01_02.png" type="Texture" id=4]
+[ext_resource path="res://images/01_01_03.png" type="Texture" id=5]
+[ext_resource path="res://images/01_02_01.png" type="Texture" id=6]
+[ext_resource path="res://images/01_02_02.png" type="Texture" id=7]
+[ext_resource path="res://images/01_02_03.png" type="Texture" id=8]
+[ext_resource path="res://addons/dialogs/dialog_box.gd" type="Script" id=9]
+[ext_resource path="res://addons/dialogs/icon.png" type="Texture" id=10]
 
 [sub_resource type="SphereMesh" id=1]
 
@@ -14,10 +20,20 @@ albedo_color = Color( 0.27451, 0.270588, 0.858824, 1 )
 flags = 4
 frames = 3
 fps = 5.0
-frame_0/texture = ExtResource( 2 )
-frame_1/texture = ExtResource( 3 )
+frame_0/texture = ExtResource( 3 )
+frame_1/texture = ExtResource( 4 )
 frame_1/delay_sec = 0.0
-frame_2/texture = ExtResource( 4 )
+frame_2/texture = ExtResource( 5 )
+frame_2/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=4]
+flags = 4
+frames = 3
+fps = 5.0
+frame_0/texture = ExtResource( 6 )
+frame_1/texture = ExtResource( 7 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 8 )
 frame_2/delay_sec = 0.0
 
 [node name="Level_0" type="Spatial"]
@@ -35,14 +51,33 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3058, 1.7826, 0 )
 omni_range = 2.5
 omni_attenuation = 0.435275
 
-[node name="Images" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="ImageViewer" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 2 )
 
-[node name="Image1" type="TextureRect" parent="Images"]
+[node name="Image1" type="TextureRect" parent="ImageViewer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = 1240.0
+margin_bottom = 680.0
 texture = SubResource( 3 )
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Image2" type="TextureRect" parent="ImageViewer"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+texture = SubResource( 4 )
 
+[node name="Dialog" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 9 )
+__meta__ = {
+"_editor_icon": ExtResource( 10 )
+}
+json_file = "res://level-00/dialog.fr.json"
+language = null
+
+[connection signal="blockFinished" from="Dialog" to="." method="_on_Dialog_blockFinished"]

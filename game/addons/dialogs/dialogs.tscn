@@ -1,110 +1,54 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://addons/dialogs/dialogs_scene.gd" type="Script" id=1]
-[ext_resource path="res://assets/dialog-frame.png" type="Texture" id=2]
+[ext_resource path="res://addons/dialogs/assets/dialog-frame.png" type="Texture" id=2]
 [ext_resource path="res://addons/dialogs/fonts/Istok-BoldItalic.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://addons/dialogs/fonts/Istok-Italic.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://addons/dialogs/fonts/Istok-Bold.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://addons/dialogs/fonts/Istok-Regular.ttf" type="DynamicFontData" id=6]
 
 [sub_resource type="DynamicFont" id=1]
-
 size = 30
-use_mipmaps = false
-use_filter = false
 font_data = ExtResource( 3 )
-_sections_unfolded = [ "Font", "Settings" ]
 
 [sub_resource type="DynamicFont" id=2]
-
 size = 30
-use_mipmaps = false
-use_filter = false
 font_data = ExtResource( 4 )
-_sections_unfolded = [ "Font", "Settings" ]
 
 [sub_resource type="DynamicFont" id=3]
-
 size = 30
-use_mipmaps = false
-use_filter = false
 font_data = ExtResource( 5 )
-_sections_unfolded = [ "Font", "Settings" ]
 
 [sub_resource type="DynamicFont" id=4]
-
 size = 30
-use_mipmaps = false
-use_filter = false
 font_data = ExtResource( 6 )
-_sections_unfolded = [ "Font", "Settings" ]
 
-[node name="dialogs" type="Control" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="dialogs" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 script = ExtResource( 1 )
 speed = 1.0
 
-[node name="NinePatchRect" type="NinePatchRect" parent="." index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 texture = ExtResource( 2 )
 region_rect = Rect2( 0, 0, 200, 150 )
 patch_margin_left = 20
 patch_margin_top = 20
 patch_margin_right = 20
 patch_margin_bottom = 20
-_sections_unfolded = [ "Margin", "Patch Margin" ]
 
-[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 40.0
 margin_top = 40.0
 margin_right = -40.0
 margin_bottom = -40.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = true
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 custom_fonts/bold_italics_font = SubResource( 1 )
 custom_fonts/italics_font = SubResource( 2 )
 custom_fonts/bold_font = SubResource( 3 )
 custom_fonts/normal_font = SubResource( 4 )
 bbcode_enabled = true
-bbcode_text = ""
-visible_characters = -1
-percent_visible = 1.0
-meta_underlined = true
-tab_size = 4
-text = ""
-scroll_active = true
-scroll_following = false
-selection_enabled = false
-override_selected_font_color = false
-_sections_unfolded = [ "custom_fonts" ]
-
 
