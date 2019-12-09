@@ -15,5 +15,6 @@ func _on_Dialog_blockFinished(part):
 	if part == 2:
 		$ImageViewer.hide_image(1)
 		yield($ImageViewer, "image_hidden")
-		$ImageViewer.fade_cache_out()
-		yield($ImageViewer, "transition_complete")
+		$ImageViewer.hide()
+		yield($ImageViewer, "viewer_hidden")
+		remove_child($ImageViewer)
