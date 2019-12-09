@@ -1,7 +1,7 @@
 tool
 extends Control
 
-const BLOCK_MARGIN = 10
+const BLOCK_MARGIN = 30
 
 var viewport_w
 var viewport_h
