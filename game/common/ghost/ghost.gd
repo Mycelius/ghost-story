@@ -18,6 +18,7 @@ var is_moving = false
 var is_charging = false
 
 var player_axes
+var animation_player
 
 func _init():
 	timer = Timer.new()
@@ -28,6 +29,8 @@ func _init():
 
 func _ready():
 	player_axes = get_parent().get_node("camera-system/pivot/player-direction")
+	animation_player = $GhostMesh.get_node("Armature/AnimationPlayer")
+	animation_player.play("Idle")
 
 func _physics_process(delta):
 	keyboard_process()
@@ -84,10 +87,10 @@ func move_process(delta):
 	if is_moving:
 		var angle = atan2(hv.x, hv.z)
 		var char_rot = get_rotation()
-		
+		print(char_rot);
 		char_rot.y = angle
 		set_rotation(char_rot)
-
+		
 func switch_stairs():
 	var stairs_light = $StairsLight
 	if stairs_power:
