@@ -43,7 +43,6 @@ material/0 = SubResource( 2 )
 shape = SubResource( 3 )
 
 [node name="Wall01" parent="." instance=ExtResource( 2 )]
-editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.99106, 0, -3.24558 )
 
 [node name="MeshInstance" parent="Wall01" index="0"]
