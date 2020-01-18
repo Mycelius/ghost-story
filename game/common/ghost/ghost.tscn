@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://common/ghost/ghost.gd" type="Script" id=1]
 [ext_resource path="res://common/ghost/ghost_exported.tscn" type="PackedScene" id=2]
@@ -17,36 +17,21 @@ height = 1.93405
 [sub_resource type="AnimationNodeAnimation" id=4]
 animation = "Move"
 
-[sub_resource type="AnimationNodeAnimation" id=8]
-animation = "Fall"
-
-[sub_resource type="AnimationNodeAnimation" id=9]
-animation = "Charge_force"
-
-[sub_resource type="AnimationNodeAnimation" id=10]
-animation = "Release_force"
-
-[sub_resource type="AnimationNodeAnimation" id=5]
+[sub_resource type="AnimationNodeAnimation" id=6]
 animation = "Idle"
 
-[sub_resource type="AnimationNodeOneShot" id=11]
+[sub_resource type="AnimationNodeBlend2" id=21]
 
-[sub_resource type="AnimationNodeBlendTree" id=7]
-graph_offset = Vector2( -291.63, -47.9863 )
-nodes/Animation/node = SubResource( 5 )
-nodes/Animation/position = Vector2( -340, 140 )
-"nodes/Animation 2/node" = SubResource( 4 )
-"nodes/Animation 2/position" = Vector2( -140, 240 )
-"nodes/Animation 3/node" = SubResource( 8 )
-"nodes/Animation 3/position" = Vector2( 40, 260 )
-"nodes/Animation 4/node" = SubResource( 9 )
-"nodes/Animation 4/position" = Vector2( -320, -100 )
-"nodes/Animation 5/node" = SubResource( 10 )
-"nodes/Animation 5/position" = Vector2( -20, 40 )
-nodes/OneShot/node = SubResource( 11 )
-nodes/OneShot/position = Vector2( 200, -80 )
-nodes/output/position = Vector2( 520, 80 )
-node_connections = [ "output", 0, "OneShot", "OneShot", 1, "Animation 5" ]
+[sub_resource type="AnimationNodeBlendTree" id=20]
+graph_offset = Vector2( 0, 95.3136 )
+nodes/Animation/node = SubResource( 4 )
+nodes/Animation/position = Vector2( 60, 280 )
+nodes/Idle/node = SubResource( 6 )
+nodes/Idle/position = Vector2( 60, 160 )
+nodes/Idle_move/node = SubResource( 21 )
+nodes/Idle_move/position = Vector2( 340, 180 )
+nodes/output/position = Vector2( 620, 260 )
+node_connections = [ "output", 0, "Idle_move", "Idle_move", 0, "Idle", "Idle_move", 1, "Animation" ]
 
 [node name="ghost" type="KinematicBody"]
 transform = Transform( -0.311743, 0, -1.01579e-07, 0, 0.311743, 0, 1.01579e-07, 0, -0.311743, 0, 0.441156, 0 )
@@ -89,11 +74,13 @@ shape = SubResource( 3 )
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
 
 [node name="Armature" parent="Ghost" index="0"]
+editor/display_folded = true
 transform = Transform( -0.311743, 0, -1.21397e-07, 0, 0.311743, 0, 1.21397e-07, 0, -0.311743, 0, 0.441156, 0 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 7 )
+tree_root = SubResource( 20 )
 anim_player = NodePath("../Ghost/AnimationPlayer")
-parameters/OneShot/active = false
+active = true
+parameters/Idle_move/blend_amount = 0.0
 
 [editable path="Ghost"]

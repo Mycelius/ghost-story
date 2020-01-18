@@ -11,11 +11,14 @@ export (int) var max_move_power = 5
 var move_power = 0
 var stairs_power = false
 var timer
+var animationTree
 
 var direction = Vector3()
 var velocity = Vector3()
 var is_moving = false
 var is_charging = false
+var is_falling = false
+var is_releasing_force = false
 
 var player_axes
 
@@ -25,9 +28,11 @@ func _init():
 	timer.set_timer_process_mode(Timer.TIMER_PROCESS_IDLE)
 	timer.connect("timeout", self, "_charge")
 	add_child(timer)
+	
 
 func _ready():
 	player_axes = get_parent().get_node("camera-system/pivot/player-direction")
+	animationTree = $AnimationTree
 
 func _physics_process(delta):
 	keyboard_process()
@@ -84,9 +89,12 @@ func move_process(delta):
 	if is_moving:
 		var angle = atan2(hv.x, hv.z)
 		var char_rot = get_rotation()
-		print(char_rot);
 		char_rot.y = angle
 		set_rotation(char_rot)
+		
+	# Set animation to play
+	animationTree.set("parameters/Idle_move/blend_amount", hv.length() / speed)
+	
 		
 func switch_stairs():
 	var stairs_light = $StairsLight
