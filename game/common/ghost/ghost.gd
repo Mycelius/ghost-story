@@ -17,7 +17,8 @@ var direction = Vector3()
 var velocity = Vector3()
 var is_moving = false
 var is_charging = false
-var is_falling = false
+var falling_speed = 0
+var idle_move_charge = 0
 var is_releasing_force = false
 
 var player_axes
@@ -69,7 +70,6 @@ func move_process(delta):
 	direction = direction.normalized()
 	
 	velocity.y += gravity * delta
-	
 	var hv = velocity
 	hv.y = 0
 	
@@ -93,7 +93,9 @@ func move_process(delta):
 		set_rotation(char_rot)
 		
 	# Set animation to play
-	animationTree.set("parameters/Idle_move/blend_amount", hv.length() / speed)
+	falling_speed = velocity.y / gravity
+	idle_move_charge = (hv.length() / speed) - falling_speed
+	animationTree.set("parameters/Positions/blend_position", Vector2(idle_move_charge, falling_speed))
 	
 		
 func switch_stairs():
