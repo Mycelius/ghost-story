@@ -14,47 +14,47 @@ radius = 0.424526
 radius = 0.626886
 height = 1.93405
 
-[sub_resource type="AnimationNodeAnimation" id=12]
+[sub_resource type="AnimationNodeAnimation" id=4]
 animation = "Charge_force"
 
-[sub_resource type="AnimationNodeBlend2" id=13]
-
-[sub_resource type="AnimationNodeAnimation" id=5]
-animation = "Idle"
+[sub_resource type="AnimationNodeBlend2" id=5]
 
 [sub_resource type="AnimationNodeAnimation" id=6]
-animation = "Fall"
+animation = "Idle"
 
 [sub_resource type="AnimationNodeAnimation" id=7]
+animation = "Fall"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
 animation = "Move"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id=9]
-blend_point_0/node = SubResource( 5 )
+blend_point_0/node = SubResource( 6 )
 blend_point_0/pos = Vector2( 0, 0 )
-blend_point_1/node = SubResource( 6 )
+blend_point_1/node = SubResource( 7 )
 blend_point_1/pos = Vector2( 0, 1 )
-blend_point_2/node = SubResource( 7 )
+blend_point_2/node = SubResource( 8 )
 blend_point_2/pos = Vector2( 1, 0 )
 
 [sub_resource type="AnimationNodeAnimation" id=10]
 animation = "Release_force"
 
-[sub_resource type="AnimationNodeOneShot" id=4]
+[sub_resource type="AnimationNodeOneShot" id=11]
 
-[sub_resource type="AnimationNodeBlendTree" id=11]
-graph_offset = Vector2( -143.915, 119.242 )
-nodes/Animation/node = SubResource( 12 )
+[sub_resource type="AnimationNodeBlendTree" id=12]
+graph_offset = Vector2( -256.229, 156.514 )
+nodes/Animation/node = SubResource( 4 )
 nodes/Animation/position = Vector2( -120, 260 )
-nodes/Charge_blend/node = SubResource( 13 )
+nodes/Charge_blend/node = SubResource( 5 )
 nodes/Charge_blend/position = Vector2( 200, 120 )
 nodes/Positions/node = SubResource( 9 )
 nodes/Positions/position = Vector2( -100, 60 )
 nodes/Release/node = SubResource( 10 )
 nodes/Release/position = Vector2( 240, 420 )
-nodes/Release_shot/node = SubResource( 4 )
+nodes/Release_shot/node = SubResource( 11 )
 nodes/Release_shot/position = Vector2( 480, 240 )
 nodes/output/position = Vector2( 840, 280 )
-node_connections = [ "output", 0, "Release_shot", "Charge_blend", 0, "Positions", "Charge_blend", 1, "Animation", "Release_shot", 0, "Charge_blend", "Release_shot", 1, "Release" ]
+node_connections = [ "output", 0, "Release_shot", "Release_shot", 0, "Charge_blend", "Release_shot", 1, "Release", "Charge_blend", 0, "Positions", "Charge_blend", 1, "Animation" ]
 
 [node name="ghost" type="KinematicBody"]
 transform = Transform( -0.311743, 0, -1.01579e-07, 0, 0.311743, 0, 1.01579e-07, 0, -0.311743, 0, 0.441156, 0 )
@@ -101,11 +101,11 @@ editor/display_folded = true
 transform = Transform( -0.311743, 0, -1.21397e-07, 0, 0.311743, 0, 1.21397e-07, 0, -0.311743, 0, 0.441156, 0 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 11 )
+tree_root = SubResource( 12 )
 anim_player = NodePath("../Ghost/AnimationPlayer")
 active = true
 parameters/Charge_blend/blend_amount = 0.0
-parameters/Positions/blend_position = Vector2( 0, 0 )
+parameters/Positions/blend_position = Vector2( -0.353, 0.095 )
 parameters/Release_shot/active = false
 
 [editable path="Ghost"]

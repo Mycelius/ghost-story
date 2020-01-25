@@ -1,10 +1,11 @@
 extends KinematicBody
 
 export (float) var speed = 7.00
+export (float) var speed_while_charge = 3.00
 export (float) var gravity = -9.80
 export (float) var acceleration = 5.00
 export (float) var deceleration = 7.00
-export (bool) var has_move_power = false
+export (bool) var has_move_power = true
 export (bool) var has_stairs_power = false
 export (int) var max_move_power = 5
 
@@ -17,9 +18,13 @@ var direction = Vector3()
 var velocity = Vector3()
 var is_moving = false
 var is_charging = false
-var falling_speed = 0
-var idle_move_charge = 0
+var is_falling = false
+var idle_move = 0
+var falling_value = 0
+var charging_value = 0
+
 var is_releasing_force = false
+var animation_change_speed = 5.00
 
 var player_axes
 
@@ -66,25 +71,42 @@ func keyboard_process():
 		
 		
 func move_process(delta):
-	# Moving player
+	# Direction du joueur normalisée
 	direction = direction.normalized()
 	
+	# Check if is falling
+	is_falling = false
+	if (! is_on_floor() && velocity.y < 0.01):
+		is_falling = true
+	# Effet de la gravité
 	velocity.y += gravity * delta
+	
+	# Copier vecteur de vélocité en supprimant la composante verticale
 	var hv = velocity
 	hv.y = 0
 	
-	var new_pos = direction * speed
-	var accel = deceleration
+	# Calculer la nouvelle position du joueur
+	var new_pos
+	if ! is_charging:
+		new_pos = direction * speed
+	else:
+		new_pos = direction * speed_while_charge
 	
+	# déterminer si le joueur accélère ou décélère en comparant la direction et la vélocité
+	var accel = deceleration
 	if (direction.dot(hv) > 0):
 		accel = acceleration
 	
+	# Adapter le vecteur de vélocité horizontal en tenant compte de l'accélération
 	hv = hv.linear_interpolate(new_pos, accel * delta)
 	
+	# remplacer les valeurs du vecteur de vélocité général par celles de vélocité horizontale
 	velocity.x = hv.x
 	velocity.z = hv.z
 	
+	# Déplacer le joueur
 	velocity = move_and_slide(velocity, Vector3(0,1,0))
+	
 	# Rotating player
 	if is_moving:
 		var angle = atan2(hv.x, hv.z)
@@ -93,9 +115,22 @@ func move_process(delta):
 		set_rotation(char_rot)
 		
 	# Set animation to play
-	falling_speed = velocity.y / gravity
-	idle_move_charge = (hv.length() / speed) - falling_speed
-	animationTree.set("parameters/Positions/blend_position", Vector2(idle_move_charge, falling_speed))
+	# Amount of falling animation
+	if (is_falling && falling_value < 1):
+		falling_value += delta * animation_change_speed
+	elif (! is_falling && falling_value > 0) :
+		falling_value -= delta * animation_change_speed
+	
+	# Charging animation
+	if (is_charging && charging_value < 1):
+		charging_value += delta * animation_change_speed
+	elif (! is_charging && charging_value > 0) :
+		charging_value -= delta * animation_change_speed
+		
+	animationTree.set("parameters/Charge_blend/blend_amount", charging_value)
+	
+	idle_move = (hv.length() / speed) - falling_value
+	animationTree.set("parameters/Positions/blend_position", Vector2(idle_move, falling_value))
 	
 		
 func switch_stairs():
@@ -119,7 +154,7 @@ func start_charging():
 func _charge():
 	if move_power < max_move_power:
 		move_power += 0.5
-		print(move_power)
+		#print(move_power)
 
 func release_power():
 	var power = $Power_area
