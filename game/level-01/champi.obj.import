@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/champi.obj-da7e3fd09e5fa2886f1323960f04bb0c.mesh"
+
+[deps]
+
+files=[ "res://.import/champi.obj-da7e3fd09e5fa2886f1323960f04bb0c.mesh" ]
+
+source_file="res://level-01/champi.obj"
+dest_files=[ "res://.import/champi.obj-da7e3fd09e5fa2886f1323960f04bb0c.mesh", "res://.import/champi.obj-da7e3fd09e5fa2886f1323960f04bb0c.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true

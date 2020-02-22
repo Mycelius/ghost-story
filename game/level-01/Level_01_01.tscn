@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://common/scripts/infinite_level.gd" type="Script" id=1]
+[ext_resource path="res://common/camera_system/camera-system.tscn" type="PackedScene" id=2]
+[ext_resource path="res://common/ghost/ghost.tscn" type="PackedScene" id=3]
+
+[node name="Level_01_01" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="camera-system" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0.677963, 1.20804 )
+camera_distance = 20.0
+camera_height = 20.0
+
+[node name="ghost" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.39953, 1.48322 )

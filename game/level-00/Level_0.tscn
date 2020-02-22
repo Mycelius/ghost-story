@@ -137,5 +137,4 @@ json_file = "res://level-00/dialog.fr.json"
 language = null
 
 [node name="Scene Root" parent="." instance=ExtResource( 20 )]
-
 [connection signal="blockFinished" from="Dialog" to="." method="_on_Dialog_blockFinished"]

@@ -6,7 +6,7 @@ export (float) var gravity = -9.80
 export (float) var acceleration = 5.00
 export (float) var deceleration = 7.00
 export (bool) var has_move_power = true
-export (bool) var has_stairs_power = false
+export (bool) var has_stairs_power = true
 export (int) var max_move_power = 5
 
 var move_power = 0
@@ -152,12 +152,18 @@ func start_charging():
 	timer.start()
 
 func _charge():
+	var force_light = $ForceLight
+	if ! force_light.visible:
+		force_light.show()
 	if move_power < max_move_power:
 		move_power += 0.5
+		force_light.light_energy = (move_power / 5) * 2
 		#print(move_power)
 
 func release_power():
+	animationTree.set("parameters/Release_shot/active", true)
 	var power = $Power_area
+	var force_light = $ForceLight
 	var hitobjects = power.get_overlapping_bodies()
 	for ob in hitobjects:
 		if ob.has_method("power_hit"):
@@ -165,6 +171,8 @@ func release_power():
 			ob.power_hit(move_power, direction)
 	timer.stop()
 	move_power = 0
+	#force_light.set('Energy', 0)
+	force_light.hide()
 	
 func is_player():
 	return true

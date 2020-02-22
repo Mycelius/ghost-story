@@ -42,7 +42,7 @@ animation = "Release_force"
 [sub_resource type="AnimationNodeOneShot" id=11]
 
 [sub_resource type="AnimationNodeBlendTree" id=12]
-graph_offset = Vector2( -256.229, 156.514 )
+graph_offset = Vector2( -413.55, 162.452 )
 nodes/Animation/node = SubResource( 4 )
 nodes/Animation/position = Vector2( -120, 260 )
 nodes/Charge_blend/node = SubResource( 5 )
@@ -54,7 +54,7 @@ nodes/Release/position = Vector2( 240, 420 )
 nodes/Release_shot/node = SubResource( 11 )
 nodes/Release_shot/position = Vector2( 480, 240 )
 nodes/output/position = Vector2( 840, 280 )
-node_connections = [ "output", 0, "Release_shot", "Release_shot", 0, "Charge_blend", "Release_shot", 1, "Release", "Charge_blend", 0, "Positions", "Charge_blend", 1, "Animation" ]
+node_connections = [ "output", 0, "Release_shot", "Charge_blend", 0, "Positions", "Charge_blend", 1, "Animation", "Release_shot", 0, "Charge_blend", "Release_shot", 1, "Release" ]
 
 [node name="ghost" type="KinematicBody"]
 transform = Transform( -0.311743, 0, -1.01579e-07, 0, 0.311743, 0, 1.01579e-07, 0, -0.311743, 0, 0.441156, 0 )
@@ -66,6 +66,13 @@ visible = false
 light_color = Color( 0.278268, 0.551039, 0.976562, 1 )
 light_energy = 3.01
 omni_range = 0.966587
+
+[node name="ForceLight" type="OmniLight" parent="."]
+transform = Transform( 3.20777, 0, 0, 0, 3.20777, 0, 0, 0, 3.20777, 0.0120846, 1.28853, 0.572274 )
+visible = false
+light_color = Color( 0.12549, 0.898039, 1, 1 )
+light_energy = 0.0
+light_specular = 0.0
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.49295, 0 )
@@ -97,14 +104,13 @@ shape = SubResource( 3 )
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
 
 [node name="Armature" parent="Ghost" index="0"]
-editor/display_folded = true
 transform = Transform( -0.311743, 0, -1.21397e-07, 0, 0.311743, 0, 1.21397e-07, 0, -0.311743, 0, 0.441156, 0 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 12 )
 anim_player = NodePath("../Ghost/AnimationPlayer")
 active = true
-parameters/Charge_blend/blend_amount = 0.0
+parameters/Charge_blend/blend_amount = 1.0
 parameters/Positions/blend_position = Vector2( -0.353, 0.095 )
 parameters/Release_shot/active = false
 
