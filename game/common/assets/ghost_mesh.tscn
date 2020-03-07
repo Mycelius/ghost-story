@@ -4,7 +4,10 @@
 [ext_resource path="res://common/assets/Body.material" type="Material" id=2]
 
 [node name="Scene Root" index="0" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.18976, -0.115033 )
+
+[node name="MeshInstance" parent="." index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24339, 0 )
 
 [node name="Rigging_Cube002" parent="." index="1"]
 material/0 = ExtResource( 2 )
-

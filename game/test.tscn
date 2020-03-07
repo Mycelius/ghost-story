@@ -42,7 +42,7 @@ camera_height = 20.0
 transform = Transform( -1, 0, -3.89414e-07, 0, 1, 0, 3.89414e-07, 0, -1, 0, 0.441156, 0 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 0.949945, -0.0888725, 0.299509, -0.312416, -0.27023, 0.910699, 0, -0.958685, -0.284469, 0, 19.9463, 0 )
+transform = Transform( 0.998889, 0.0134071, -0.045183, 0.0450439, 0.0105048, 0.99893, 0.0138674, -0.999855, 0.00988923, 0, 19.9463, 0 )
 light_specular = 0.0
 shadow_enabled = true
 shadow_color = Color( 0.258824, 0.258824, 0.258824, 1 )

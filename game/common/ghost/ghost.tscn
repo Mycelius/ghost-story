@@ -42,7 +42,7 @@ animation = "Release_force"
 [sub_resource type="AnimationNodeOneShot" id=11]
 
 [sub_resource type="AnimationNodeBlendTree" id=12]
-graph_offset = Vector2( -413.55, 162.452 )
+graph_offset = Vector2( -385.98, 19.6875 )
 nodes/Animation/node = SubResource( 4 )
 nodes/Animation/position = Vector2( -120, 260 )
 nodes/Charge_blend/node = SubResource( 5 )
@@ -110,8 +110,8 @@ transform = Transform( -0.311743, 0, -1.21397e-07, 0, 0.311743, 0, 1.21397e-07, 
 tree_root = SubResource( 12 )
 anim_player = NodePath("../Ghost/AnimationPlayer")
 active = true
-parameters/Charge_blend/blend_amount = 1.0
-parameters/Positions/blend_position = Vector2( -0.353, 0.095 )
+parameters/Charge_blend/blend_amount = 0.0
+parameters/Positions/blend_position = Vector2( 0.0445247, 0.184136 )
 parameters/Release_shot/active = false
 
 [editable path="Ghost"]

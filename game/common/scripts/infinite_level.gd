@@ -7,20 +7,31 @@ var tiles = []
 var next_tiles = []
 var current_tile_pos = Vector2(0.0, 0.0)
 var wait = false
+var count_transitions = 0
 
 func _ready():
 	init_tiles()
+	$Transition.show_cache()
+	$Transition.fade_in()
+	yield($Transition, "transition_complete")
+	$Dialog.start_dialog(1)
 
 func _player_entered(entered):
 	if entered != current_tile_pos:
 		next_tiles.append(entered)
+		count_transitions += 1
+		if count_transitions == 5:
+			$Dialog.start_dialog(2)
+		if count_transitions == 100:
+			$Dialog.start_dialog(3)
 		
 func _player_exited(exited):
 	if exited == current_tile_pos:
 		if next_tiles.size() > 2:
 			wait = true
 		else:
-			move(next_tiles[0])
+			if next_tiles.size():
+				move(next_tiles[0])
 			
 	elif exited != current_tile_pos:
 		var index = next_tiles.find(exited)
@@ -103,6 +114,9 @@ func get_move(entered):
 	
 	return current_move
 
+func change_level():
+	get_tree().change_scene("res://level-01/Level_01_02.tscn")
+
 func add_tile(i, j):
 	var x = current_tile_pos.x + TILE_SIZE * (i - 1.0)
 	var y = current_tile_pos.y + TILE_SIZE * (j - 1.0)
@@ -113,4 +127,5 @@ func add_tile(i, j):
 	tiles[i][j].translate(Vector3(x,0.0,y))
 	tiles[i][j].connect("player_entered", self, "_player_entered", [Vector2(x, y)])
 	tiles[i][j].connect("player_exited", self, "_player_exited", [Vector2(x, y)])
+	tiles[i][j].connect("player_exited_level", self, "change_level")
 	add_child(tiles[i][j])

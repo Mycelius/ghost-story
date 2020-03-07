@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://level-00/Level_0.gd" type="Script" id=1]
 [ext_resource path="res://common/scripts/images_viewer.gd" type="Script" id=2]
@@ -17,9 +17,10 @@
 [ext_resource path="res://images/01_05_01.png" type="Texture" id=15]
 [ext_resource path="res://images/01_05_02.png" type="Texture" id=16]
 [ext_resource path="res://images/01_05_03.png" type="Texture" id=17]
-[ext_resource path="res://addons/dialogs/dialog_box.gd" type="Script" id=18]
-[ext_resource path="res://addons/dialogs/icon.png" type="Texture" id=19]
-[ext_resource path="res://common/assets/ghost_mesh.tscn" type="PackedScene" id=20]
+[ext_resource path="res://common/scripts/transition.gd" type="Script" id=18]
+[ext_resource path="res://addons/dialogs/dialog_box.gd" type="Script" id=19]
+[ext_resource path="res://addons/dialogs/icon.png" type="Texture" id=20]
+[ext_resource path="res://common/assets/ghost_mesh.tscn" type="PackedScene" id=21]
 
 [sub_resource type="AnimatedTexture" id=1]
 flags = 4
@@ -68,15 +69,39 @@ frame_1/delay_sec = 0.0
 frame_2/texture = ExtResource( 17 )
 frame_2/delay_sec = 0.0
 
+[sub_resource type="Animation" id=6]
+resource_name = "mouvement"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimationPlayer/Scene Root:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.0125168, 1.99621 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, -5.6142, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimationPlayer/Position3D:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.0232635, 1.98519 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 1.20687, 0.125473 ), Vector3( 0, -4.40431, 0.125473 ) ]
+}
+
 [node name="Level_0" type="Spatial"]
 script = ExtResource( 1 )
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.999644, -0.026671, 0, 0.026671, 0.999644, 0, 1.17394, 2.63835 )
-fov = 20.3
-
 [node name="OmniLight" type="OmniLight" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.45454, 2.32351, -0.0914311 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0703137, 0.845738, 1.425 )
 omni_range = 2.056
 omni_attenuation = 0.435275
 
@@ -126,15 +151,32 @@ margin_right = 40.0
 margin_bottom = 40.0
 texture = SubResource( 5 )
 
-[node name="Dialog" type="Control" parent="."]
+[node name="Transitions" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 18 )
+
+[node name="Dialog" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 19 )
 __meta__ = {
-"_editor_icon": ExtResource( 19 )
+"_editor_icon": ExtResource( 20 )
 }
-json_file = "res://level-00/dialog.fr.json"
+json_file = "res://dialogs/dialog_00.fr.json"
 language = null
 
-[node name="Scene Root" parent="." instance=ExtResource( 20 )]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/mouvement = SubResource( 6 )
+
+[node name="Scene Root" parent="AnimationPlayer" instance=ExtResource( 21 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0579198, 0 )
+
+[node name="Position3D" type="Position3D" parent="AnimationPlayer"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0245078, 1.17907, 0.125473 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, -4.44089e-16, -2.70833e-08, -2.25384e-09, 0.996531, -0.0832188, 2.69894e-08, 0.0832188, 0.996531, -0.00842142, 1.04215, 1.24865 )
+fov = 46.3548
 [connection signal="blockFinished" from="Dialog" to="." method="_on_Dialog_blockFinished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

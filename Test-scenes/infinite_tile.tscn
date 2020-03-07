@@ -36,6 +36,5 @@ transform = Transform( 0.67003, 0, -0.742334, 0, 1, 0, 0.742334, 0, 0.67003, 2, 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
 transform = Transform( 0.667731, 0, 0.744403, 0, 1, 0, -0.744403, 0, 0.667731, 0.0181139, -0.124219, 0.0143113 )
 shape = SubResource( 4 )
-
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
 [connection signal="body_exited" from="Area" to="." method="_on_Area_body_exited"]

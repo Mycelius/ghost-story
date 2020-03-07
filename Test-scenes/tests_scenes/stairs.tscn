@@ -100,7 +100,6 @@ collision_mask = 4
 [node name="CollisionShape" type="CollisionShape" parent="Stairs/MeshInstance3/StaticBody"]
 shape = SubResource( 9 )
 
-
 [editable path="Wall03"]
 
 [editable path="Wall04"]
